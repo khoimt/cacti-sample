@@ -608,3 +608,11 @@ div.calendar { position: relative; }
 @media print {
 	.noprint { display:none }
 }
+
+.graph-detail {
+	padding: 10px;
+}
+
+.graph-detail .dataTables_length{
+	display: none;
+}

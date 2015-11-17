@@ -1053,3 +1053,4 @@ function leafs_percentup($leafs) {
 	return $result;
 }
 
+//print_r($_SESSION);

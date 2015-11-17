@@ -55,12 +55,12 @@ if (read_config_option("auth_method") != 0) {
 <html>
 <head>
 	<title><?php print (isset($title) ? $title : "Syslog Viewer");?></title>
-	<link href="<?php echo $config['url_path'];?>include/main.css" rel="stylesheet">
+	<link href="<?php echo $config['url_path'];?>include/css/main.css" rel="stylesheet">
 	<link href="<?php echo $config['url_path'];?>plugins/syslog/images/favicon.ico" rel="shortcut icon">
 	<?php if (isset($_REQUEST["refresh"])) {
 	print "<meta http-equiv=refresh content=\"" . $_REQUEST["refresh"] . "; url='" . $config["url_path"] . "plugins/syslog/syslog.php'\">";
 	}?>
-	<script type="text/javascript" src="<?php echo $config['url_path']; ?>include/layout.js"></script>
+	<script type="text/javascript" src="<?php echo $config['url_path']; ?>include/js/layout.js"></script>
 	<script type="text/javascript" src="<?php echo $config['url_path']; ?>include/jscalendar/calendar.js"></script>
 	<script type="text/javascript" src="<?php echo $config['url_path']; ?>include/jscalendar/lang/calendar-en.js"></script>
 	<script type="text/javascript" src="<?php echo $config['url_path']; ?>include/jscalendar/calendar-setup.js"></script>

@@ -38,17 +38,19 @@ $page_title = api_plugin_hook_function('page_title', draw_navigation_text("title
 	<meta http-equiv="X-UA-Compatible" content="edge">
 	<title><?php echo $page_title; ?></title>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-	<link href="<?php echo $config['url_path']; ?>include/main.css" type="text/css" rel="stylesheet">
-	<link href="/javascript/jquery-ui-themes/ui-lightness/jquery.ui.all.css" type="text/css" rel="stylesheet">
-	<link href="<?php echo $config['url_path']; ?>images/favicon.ico" rel="shortcut icon">
-	<script type="text/javascript" src="<?php echo $config['url_path']; ?>include/layout.js"></script>
-	<script type="text/javascript" src="<?php echo $config['url_path']; ?>include/js/jquery.js" language="javascript"></script>
-	<script type="text/javascript" src="/javascript/jquery-ui/jquery-ui.min.js" language="javascript"></script>
-	<script type="text/javascript" src="/javascript/jquery-cookie/jquery.cookie.min.js" language="javascript"></script>
-	<script type="text/javascript" src="<?php echo $config['url_path']; ?>include/js/jstree.js"></script>
-	<script type="text/javascript" src="<?php echo $config['url_path']; ?>include/jscalendar/calendar.js"></script>
-	<script type="text/javascript" src="<?php echo $config['url_path']; ?>include/jscalendar/lang/calendar-en.js"></script>
-	<script type="text/javascript" src="<?php echo $config['url_path']; ?>include/jscalendar/calendar-setup.js"></script>
+	<link href="<?php echo $config['url_path']; ?>include/css/main.css<?php echo "?v=" . $config['css_version'] ?>" type="text/css" rel="stylesheet">
+	<!--<link href="/javascript/jquery-ui-themes/ui-lightness/css/jquery.ui.all.css<?php echo "?v=" . $config['css_version'] ?>" type="text/css" rel="stylesheet">-->
+	<link href="<?php echo $config['url_path']; ?>include/css/jquery.dataTables.min.css<?php echo "?v=" . $config['css_version'] ?>" type="text/css" rel="stylesheet">
+	<link href="<?php echo $config['url_path']; ?>images/favicon.ico<?php echo "?v=" . $config['css_version'] ?>" rel="shortcut icon">
+	<script type="text/javascript" src="<?php echo $config['url_path']; ?>include/js/layout.js<?php echo "?v=" . $config['js_version'] ?>"></script>
+	<script type="text/javascript" src="<?php echo $config['url_path']; ?>include/js/jquery.js<?php echo "?v=" . $config['js_version'] ?>" language="javascript"></script>
+	<script type="text/javascript" src="<?php echo $config['url_path']; ?>include/js/jquery-ui.min.js<?php echo "?v=" . $config['js_version'] ?>" language="javascript"></script>
+	<script type="text/javascript" src="<?php echo $config['url_path']; ?>include/js/jquery.cookie.js<?php echo "?v=" . $config['js_version'] ?>" language="javascript"></script>
+	<script type="text/javascript" src="<?php echo $config['url_path']; ?>include/js/jstree.js<?php echo "?v=" . $config['js_version'] ?>"></script>
+	<script type="text/javascript" src="<?php echo $config['url_path']; ?>include/js/jquery.dataTables.min.js<?php echo "?v=" . $config['js_version'] ?>"></script>
+	<script type="text/javascript" src="<?php echo $config['url_path']; ?>include/jscalendar/calendar.js<?php echo "?v=" . $config['js_version'] ?>"></script>
+	<script type="text/javascript" src="<?php echo $config['url_path']; ?>include/jscalendar/lang/calendar-en.js<?php echo "?v=" . $config['js_version'] ?>"></script>
+	<script type="text/javascript" src="<?php echo $config['url_path']; ?>include/jscalendar/calendar-setup.js<?php echo "?v=" . $config['js_version'] ?>"></script>
 	<?php
 	if (isset($refresh)) {
 		if (is_array($refresh)) {
@@ -60,12 +62,7 @@ $page_title = api_plugin_hook_function('page_title', draw_navigation_text("title
 	api_plugin_hook('page_head'); ?>
 </head>
 
-<?php if ($oper_mode == OPER_MODE_NATIVE) {?>
 <body style="background-image:url('<?php print $config['url_path'];?>images/left_border.gif');background-repeat:repeat-y;" <?php print api_plugin_hook_function("body_style", "");?>>
-<?php }else{?>
-<body style="background-image:url('<?php print $config['url_path'];?>images/left_border.gif');background-repeat:repeat-y;" <?php print api_plugin_hook_function("body_style", "");?>>
-<?php }?>
-
 <table style="width:100%" cellspacing="0" cellpadding="0">
 <?php if ($oper_mode == OPER_MODE_NATIVE) { ;?>
 	<tr class='cactiPageHead noprint'>

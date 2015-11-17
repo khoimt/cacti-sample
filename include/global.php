@@ -91,6 +91,9 @@ $no_http_header_files = array(
 $config = array();
 $colors = array();
 
+$config["css_version"] = "0.1";
+$config["js_version"] = "0.1";
+
 /* this should be auto-detected, set it manually if needed */
 $config["cacti_server_os"] = (strstr(PHP_OS, "WIN")) ? "win32" : "unix";
 
