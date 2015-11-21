@@ -126,7 +126,7 @@ switch ($_REQUEST['action']) {
 			$(document).ready(function () {
 				try {
 					$(".datatable-display").DataTable({
-						searching: false
+						searching: true
 					});
 				} catch (ex) {
 
@@ -260,7 +260,8 @@ switch ($_REQUEST['action']) {
 			$(document).ready(function () {
 				try {
 					$(".datatable-display").DataTable({
-						searching: false,
+						dom: 'Bfrtip',
+						searching: true,
 						pageLength: 5
 					});
 				} catch (ex) {
@@ -275,7 +276,7 @@ switch ($_REQUEST['action']) {
 		<tr class='even noprint'>
 			<td class='noprint'>
 				<form style='margin:0px;padding:0px;' name='form_graph_view' method='post' onSubmit='applyGraphPreviewFilterChange(document.form_graph_view);
-								return false;'>
+						return false;'>
 					<table cellpadding='1' cellspacing='0'>
 						<tr class='noprint'>
 							<td width='55'>
@@ -630,9 +631,9 @@ switch ($_REQUEST['action']) {
 		print $nav;
 
 		if (get_request_var_request('thumbnails') == 'true') {
-			html_graph_thumbnail_area($graphs, '', 'graph_start=' . get_current_graph_start() . '&graph_end=' . get_current_graph_end(), '', get_request_var_request('columns'));
+			html_graph_thumbnail_area($graphs, '', 'graph_start=' . get_current_graph_start() . '&graph_end=' . get_current_graph_end(), '', get_request_var_request('columns'), get_current_graph_start(), get_current_graph_end());
 		} else {
-			html_graph_area($graphs, '', 'graph_start=' . get_current_graph_start() . '&graph_end=' . get_current_graph_end(), '', get_request_var_request('columns'));
+			html_graph_area($graphs, '', 'graph_start=' . get_current_graph_start() . '&graph_end=' . get_current_graph_end(), '', get_request_var_request('columns'), get_current_graph_start(), get_current_graph_end());
 		}
 
 		print $nav;

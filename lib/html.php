@@ -103,8 +103,8 @@ function html_graph_end_box() {
 function html_graph_area(&$graph_array, $no_graphs_message = "", $extra_url_args = "", $header = "", $columns = 0, $grStart = 0, $grEnd = 0) {
 	global $config;
 
-	$graphStart = 1447665446;
-	$graphEnd = 1447751846;
+	$graphStart = $grStart;
+	$graphEnd = $grEnd;
 //	print_r(func_get_args());
 //	print_r($graphStart);
 //	print_r($graphEnd);
@@ -195,7 +195,6 @@ function html_graph_area(&$graph_array, $no_graphs_message = "", $extra_url_args
 			$graph_data_array = array("graph_start" => $graphStart, "graph_end" => $graphEnd);
 			$xport_meta = array();
 			$data = @rrdtool_function_xport($graph["local_graph_id"], 0, $graph_data_array, $xport_meta);
-			$dataSet = array();
 			?>
 			<td align='center' width='<?php print ceil(100 / $columns); ?>%'>
 				<table align='center' cellpadding='0'>
@@ -224,16 +223,24 @@ function html_graph_area(&$graph_array, $no_graphs_message = "", $extra_url_args
 									</tr>
 								</thead>
 								<tbody>
-									<?php
-									$start = $data['meta']['start'];
-									$step = $data['meta']['step'];
-									foreach ($data["data"] as $arr):
-									?>
+									<?php // print_r($data) ?>
+									<?php foreach ($data["data"] as $record): ?>
 										<tr>
-											<td><?php echo $start; $start += $step; ?></td>
-											<?php foreach ($arr as $val): ?>
-												<td><?php echo $val ?></td>
-										<?php endforeach; ?> 
+											<?php $echoTime = false; ?>
+											<?php foreach ($record as $key => $val): ?>
+												<?php
+												if (!$echoTime):
+													echo "<td>";
+													if (array_key_exists("timestamp", $record)):
+														echo "<span title='".date("Y-m-d H:i:s", $record['timestamp'])."'>" . date("H:i:s", $record['timestamp']) . "</span>";
+													endif;
+													$echoTime = true;
+													echo "</td>";
+													?>
+												<?php elseif ($key != "timestamp"): ?>
+													<td><?php echo $val; ?></td>
+												<?php endif; ?>
+											<?php endforeach; ?> 
 										</tr>
 									<?php endforeach; ?> 
 								</tbody>
@@ -279,7 +286,7 @@ function html_graph_area(&$graph_array, $no_graphs_message = "", $extra_url_args
   @arg $header - html to use as a header
   @arg $columns - the number of columns to present */
 
-function html_graph_thumbnail_area(&$graph_array, $no_graphs_message = "", $extra_url_args = "", $header = "", $columns = 0) {
+function html_graph_thumbnail_area(&$graph_array, $no_graphs_message = "", $extra_url_args = "", $header = "", $columns = 0, $graphStart = 0, $graphEnd = 0) {
 	global $config;
 	$i = 0;
 	$k = 0;
@@ -341,19 +348,60 @@ function html_graph_thumbnail_area(&$graph_array, $no_graphs_message = "", $extr
 				$start = false;
 			}
 			?>
+			<?php 
+			$graph_data_array = array("graph_start" => $graphStart, "graph_end" => $graphEnd);
+			$xport_meta = array();
+			$data = @rrdtool_function_xport($graph["local_graph_id"], 0, $graph_data_array, $xport_meta);
+			?>
 			<td align='center' width='<?php print ceil(100 / $columns); ?>%'>
 				<table align='center' cellpadding='0'>
 					<tr>
 						<td align='center'>
 							<div style="min-height: <?php echo (1.6 * read_graph_config_option("default_height")) . "px" ?>;"><a href='<?php print htmlspecialchars($config['url_path'] . "graph.php?action=view&rra_id=all&local_graph_id=" . $graph["local_graph_id"]); ?>'><img class='graphimage' id='graph_<?php print $graph["local_graph_id"] ?>' src='<?php print htmlspecialchars($config['url_path'] . "graph_image.php?local_graph_id=" . $graph["local_graph_id"] . "&rra_id=0&graph_height=" . read_graph_config_option("default_height") . "&graph_width=" . read_graph_config_option("default_width") . "&graph_nolegend=true&title_font_size=" . ((read_graph_config_option("custom_fonts") == "on") ? read_graph_config_option("title_size") : read_config_option("title_size")) . (($extra_url_args == "") ? "" : "&$extra_url_args")); ?>' border='0' alt='<?php print htmlspecialchars($graph["title_cache"], ENT_QUOTES); ?>'></a></div>
-			<?php print (read_graph_config_option("show_graph_title") == "on" ? "<p style='font-size: 10;' align='center'><strong>" . htmlspecialchars($graph["title_cache"], ENT_QUOTES) . "</strong></p>" : ""); ?>
+							<?php print (read_graph_config_option("show_graph_title") == "on" ? "<p style='font-size: 10;' align='center'><strong>" . htmlspecialchars($graph["title_cache"], ENT_QUOTES) . "</strong></p>" : ""); ?>
 						</td>
 						<td valign='top' style='align: left; padding: 3px;'>
 							<a href='<?php print htmlspecialchars($config['url_path'] . "graph.php?action=zoom&local_graph_id=" . $graph["local_graph_id"] . "&rra_id=0&" . $extra_url_args); ?>'><img src='<?php print $config['url_path']; ?>images/graph_zoom.gif' border='0' alt='Zoom Graph' title='Zoom Graph' style='padding: 3px;'></a><br>
 							<a href='<?php print htmlspecialchars($config['url_path'] . "graph_xport.php?local_graph_id=" . $graph["local_graph_id"] . "&rra_id=0&" . $extra_url_args); ?>'><img src='<?php print $config['url_path']; ?>images/graph_query.png' border='0' alt='CSV Export' title='CSV Export' style='padding: 3px;'></a><br>
 							<a href='<?php print htmlspecialchars($config['url_path'] . "graph.php?action=properties&local_graph_id=" . $graph["local_graph_id"] . "&rra_id=0&" . $extra_url_args); ?>'><img src='<?php print $config['url_path']; ?>images/graph_properties.gif' border='0' alt='Graph Source/Properties' title='Graph Source/Properties' style='padding: 3px;'></a><br>
-			<?php api_plugin_hook('graph_buttons_thumbnails', array('hook' => 'graphs_thumbnails', 'local_graph_id' => $graph['local_graph_id'], 'rra' => 0, 'view_type' => '')); ?>
+							<?php api_plugin_hook('graph_buttons_thumbnails', array('hook' => 'graphs_thumbnails', 'local_graph_id' => $graph['local_graph_id'], 'rra' => 0, 'view_type' => '')); ?>
 							<a href='#page_top'><img src='<?php print $config['url_path'] . "images/graph_page_top.gif"; ?>' border='0' alt='Page Top' title='Page Top' style='padding: 3px;'></a><br>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" class="graph-detail">
+							<table id="graph-detail-<?php echo $graph["local_graph_id"]; ?>" class="datatable-display" cellspacing="0" width="100%">
+								<thead>
+									<tr>
+										<th>Time</th>
+										<?php foreach ($data["meta"]["legend"] as $value): ?>
+											<th><?php echo $value; ?></th>
+										<?php endforeach; ?>
+									</tr>
+								</thead>
+								<tbody>
+									<?php // print_r($data) ?>
+									<?php foreach ($data["data"] as $record): ?>
+										<tr>
+											<?php $echoTime = false; ?>
+											<?php foreach ($record as $key => $val): ?>
+												<?php
+												if (!$echoTime):
+													echo "<td>";
+													if (array_key_exists("timestamp", $record)):
+														echo "<span title='".date("Y-m-d H:i:s", $record['timestamp'])."'>" . date("H:i:s", $record['timestamp']) . "</span>";
+													endif;
+													$echoTime = true;
+													echo "</td>";
+													?>
+												<?php elseif ($key != "timestamp"): ?>
+													<td><?php echo $val; ?></td>
+												<?php endif; ?>
+											<?php endforeach; ?> 
+										</tr>
+									<?php endforeach; ?> 
+								</tbody>
+							</table>
 						</td>
 					</tr>
 				</table>
@@ -903,7 +951,7 @@ function draw_actions_dropdown($actions_array) {
 			</td>
 			<td align='right'>
 				Choose an action:
-	<?php form_dropdown("drp_action", $actions_array, "", "", "1", "", ""); ?>
+				<?php form_dropdown("drp_action", $actions_array, "", "", "1", "", ""); ?>
 			</td>
 			<td width='1' align='right'>
 				<input type='submit' value='Go' title='Execute Action'>
@@ -931,7 +979,7 @@ function form_area($text) {
 	?>
 	<tr>
 		<td class="textArea">
-	<?php print $text; ?>
+			<?php print $text; ?>
 		</td>
 	</tr>
 <?php }
