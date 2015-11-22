@@ -1,0 +1,1791 @@
+#
+#
+#
+#
+MIB: AAC-MIB (file:./AAC.mib) converted on Sat Feb 23 20:40:54 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: ACLMGMT-MIB (file:./ACL.mib) converted on Sat Feb 23 20:40:54 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: DLINK-ID-REC-MIB (file:./DLINK-ID-REC-MIB.mib) converted on Sat Feb 23 20:40:54 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: DLINK-AGENT-MIB (file:./dlkAgent.mib) converted on Sat Feb 23 20:40:54 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: DLINK-AUTH-MIB (file:./dlkAuth.mib) converted on Sat Feb 23 20:40:54 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: DLINK-EQUIPMENT-MIB (file:./dlkEquipment.mib) converted on Sat Feb 23 20:40:54 2008 using snmpttconvertmib v1.2
+#
+#
+#
+EVENT swPowerFailure .1.3.6.1.4.1.171.12.11.2.2.2.0.2 "Status Events" Normal
+FORMAT Power Failure notification. $+*
+SDESC
+Power Failure notification.
+Variables:
+  1: swPowerUnitIndex
+     Syntax="INTEGER"
+     Descr="Indicates ID of the unit in the System"
+  2: swPowerID
+     Syntax="INTEGER"
+     Descr="Indicates ID of the power 
+            1 : main power
+            2 : redundant power ."
+  3: swPowerStatus
+     Syntax="INTEGER"
+       0: other
+       1: lowVoltage
+       2: overCurrent
+       3: working
+       4: fail
+       5: connect
+       6: disconnect
+     Descr="Indicates status of the power "
+EDESC
+#
+#
+#
+EVENT swPowerRecover .1.3.6.1.4.1.171.12.11.2.2.2.0.3 "Status Events" Normal
+FORMAT Power Recover notification. $+*
+SDESC
+Power Recover notification.
+Variables:
+  1: swPowerUnitIndex
+     Syntax="INTEGER"
+     Descr="Indicates ID of the unit in the System"
+  2: swPowerID
+     Syntax="INTEGER"
+     Descr="Indicates ID of the power 
+            1 : main power
+            2 : redundant power ."
+  3: swPowerStatus
+     Syntax="INTEGER"
+       0: other
+       1: lowVoltage
+       2: overCurrent
+       3: working
+       4: fail
+       5: connect
+       6: disconnect
+     Descr="Indicates status of the power "
+EDESC
+#
+#
+#
+#
+MIB: MSTP-MIB (file:./dlkMSTP.mib) converted on Sat Feb 23 20:40:54 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: DLINK-TIME-MIB (file:./dlkTime.mib) converted on Sat Feb 23 20:40:54 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: Dot1xMGMT-MIB (file:./dot1xmgmt.mib) converted on Sat Feb 23 20:40:54 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: Double-VLAN-MIB (file:./DoubleVlan.mib) converted on Sat Feb 23 20:40:54 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: DVMRP-MIB (file:./dvmrp.mib) converted on Sat Feb 23 20:40:54 2008 using snmpttconvertmib v1.2
+#
+#
+#
+EVENT dvmrpNeighborLoss .1.3.6.1.3.62.1.1.11.1 "Status Events" Normal
+FORMAT A dvmrpNeighborLoss trap signifies the loss of a 2-way $+*
+SDESC
+A dvmrpNeighborLoss trap signifies the loss of a 2-way
+adjacency with a neighbor.  This trap should be generated
+when the neighbor state changes from active to one-way,
+ignoring, or down.  The trap should be generated only if the
+router has no other neighbors on the same interface with a
+lower IP address than itself.
+Variables:
+  1: dvmrpInterfaceLocalAddress
+     Syntax="IPADDR"
+     Descr="The IP address this system will use as a source address on
+            this interface.  On unnumbered interfaces, it must be the
+            same value as dvmrpInterfaceLocalAddress for some interface
+            on the system."
+  2: dvmrpNeighborIfIndex
+     Syntax="INTEGER32"
+     Descr="The value of ifIndex for the virtual interface used to
+            reach this DVMRP neighbor."
+  3: dvmrpNeighborAddress
+     Syntax="IPADDR"
+     Descr="The IP address of the DVMRP neighbor for which this entry
+            contains information."
+  4: dvmrpNeighborState
+     Syntax="INTEGER"
+       1: oneway
+       2: active
+       3: ignoring
+       4: down
+     Descr="State of the neighbor adjacency."
+EDESC
+#
+#
+#
+EVENT dvmrpNeighborNotPruning .1.3.6.1.3.62.1.1.11.2 "Status Events" Normal
+FORMAT A dvmrpNeighborNotPruning trap signifies that a non-pruning $+*
+SDESC
+A dvmrpNeighborNotPruning trap signifies that a non-pruning
+neighbor has been detected.  This trap should be generated
+at most once per generation ID of the neighbor.  For
+example, it may be generated at the time a neighbor is first
+heard from if the prune bit is not set in its capabilities.
+The trap should be generated only if the router has no other
+neighbors on the same interface with a lower IP address than
+itself.
+Variables:
+  1: dvmrpInterfaceLocalAddress
+     Syntax="IPADDR"
+     Descr="The IP address this system will use as a source address on
+            this interface.  On unnumbered interfaces, it must be the
+            same value as dvmrpInterfaceLocalAddress for some interface
+            on the system."
+  2: dvmrpNeighborIfIndex
+     Syntax="INTEGER32"
+     Descr="The value of ifIndex for the virtual interface used to
+            reach this DVMRP neighbor."
+  3: dvmrpNeighborAddress
+     Syntax="IPADDR"
+     Descr="The IP address of the DVMRP neighbor for which this entry
+            contains information."
+EDESC
+#
+#
+#
+#
+MIB: IANA-RTPROTO-MIB (file:./IANA-RTPROTO-MIB.mib) converted on Sat Feb 23 20:40:54 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: IEEE8021-PAE-MIB (file:./ie8021x.mib) converted on Sat Feb 23 20:40:54 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: IGMPV3-MIB (file:./IGMPv3.mib) converted on Sat Feb 23 20:40:54 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: IP-MAC-BIND-MIB (file:./IPMacBind.mib) converted on Sat Feb 23 20:40:55 2008 using snmpttconvertmib v1.2
+#
+#
+#
+EVENT swIpMacBindingViolationTrap .1.3.6.1.4.1.171.12.23.5.0.5 "Status Events" Normal
+FORMAT FORM: When the IP-Mac Binging trap is enabled, if there's a new MAC that violates the pre-defined $+*
+REGEX ((.*)[A-Za-z]{5,}(.[0-9]{1,2})?\:\ ?([A-Za-z0-9]{1,2})\ ?[A-Za-z]{5,}\:([0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3})\ ?[A-Za-z]{5,}\:\ ?([A-Z0-9]{2})\ ?([A-Z0-9]{2})\ ?([A-Z0-9]{2})\ ?([A-Z0-9]{2})\ ?([A-Z0-9]{2})\ ?([A-Z0-9]{2}))("FORM: WARN: Unauthenticated IP-MAC address and discarded by ip mac port binding <br>   (IP: $4, MAC: $5:$6:$7:$8:$9:$10, Port: $3)")ige
+SDESC
+When the IP-Mac Binging trap is enabled, if there's a new MAC that violates the pre-defined 
+port security configuration, trap will be sent out              
+Variables:
+  1: swIpMacBindingPorts
+     Syntax="OCTETSTR"
+     Descr="The port members of this entry."
+  2: swIpMacBindingViolationIP
+     Syntax="OCTETSTR"
+     Descr="This object indicates the MAC address that violates the IP-Mac Binging configuration."
+  3: swIpMacBindingViolationMac
+     Syntax="OCTETSTR"
+     Descr="This object indicates the IP address that violates the IP-Mac Binging configuration."
+EDESC
+#
+#
+#
+#
+MIB: DES3828DC-L2MGMT-MIB (file:./L2mgmtDES3828DC.mib) converted on Sat Feb 23 20:40:55 2008 using snmpttconvertmib v1.2
+#
+#
+#
+EVENT swL2macNotification .1.3.6.1.4.1.171.11.69.2.2.15.0.3 "Status Events" Normal
+FORMAT  This trap indicate the mac addresses variation in address table .  $+*
+SDESC
+ This trap indicate the mac addresses variation in address table . 
+Variables:
+  1: swL2macNotifyInfo
+     Syntax="OCTETSTR"
+     Descr="This object indicates the last time reboot information.
+            "
+EDESC
+#
+#
+#
+EVENT swL2porttypechgNotification .1.3.6.1.4.1.171.11.69.2.2.15.0.4 "Status Events" Normal
+FORMAT  This trap indicate the port type change.  $+*
+SDESC
+ This trap indicate the port type change. 
+Variables:
+  1: swL2PortInfoPortIndex
+     Syntax="INTEGER"
+     Descr="This object indicates the module's port number.(1..Max port
+	        number in the module)"
+  2: swL2PortInfoType
+     Syntax="INTEGER"
+       1: portType-100Base-TX
+       2: portType-100Base-FX
+       3: portType-100Base-FL
+       4: portType-1000Base-TX
+       5: portType-1000Base-SX
+       6: portType-1000Base-LX
+       7: none
+     Descr="This object indicates the connector type of this port."
+EDESC
+#
+#
+#
+EVENT swPowerStatusChg .1.3.6.1.4.1.171.11.69.2.2.15.0.5 "Status Events" Normal
+FORMAT Power Status change notification. $+*
+SDESC
+Power Status change notification.
+Variables:
+  1: swDevInfoPowerUnitIndex
+     Syntax="INTEGER"
+     Descr="Indicates ID of the unit in the System"
+  2: swDevInfoPowerID
+     Syntax="INTEGER"
+     Descr="Indicates ID of the power "
+  3: swDevInfoPowerStatus
+     Syntax="INTEGER"
+       0: other
+       1: lowVoltage
+       2: overCurrent
+       3: working
+       4: fail
+       5: connect
+       6: disconnect
+     Descr="Indicates status of the power "
+EDESC
+#
+#
+#
+EVENT swPowerFailure .1.3.6.1.4.1.171.11.69.2.2.15.0.6 "Status Events" Normal
+FORMAT Power Failure notification. $+*
+SDESC
+Power Failure notification.
+Variables:
+  1: swDevInfoPowerUnitIndex
+     Syntax="INTEGER"
+     Descr="Indicates ID of the unit in the System"
+  2: swDevInfoPowerID
+     Syntax="INTEGER"
+     Descr="Indicates ID of the power "
+  3: swDevInfoPowerStatus
+     Syntax="INTEGER"
+       0: other
+       1: lowVoltage
+       2: overCurrent
+       3: working
+       4: fail
+       5: connect
+       6: disconnect
+     Descr="Indicates status of the power "
+EDESC
+#
+#
+#
+EVENT swPowerRecover .1.3.6.1.4.1.171.11.69.2.2.15.0.7 "Status Events" Normal
+FORMAT Power Recover notification. $+*
+SDESC
+Power Recover notification.
+Variables:
+  1: swDevInfoPowerUnitIndex
+     Syntax="INTEGER"
+     Descr="Indicates ID of the unit in the System"
+  2: swDevInfoPowerID
+     Syntax="INTEGER"
+     Descr="Indicates ID of the power "
+  3: swDevInfoPowerStatus
+     Syntax="INTEGER"
+       0: other
+       1: lowVoltage
+       2: overCurrent
+       3: working
+       4: fail
+       5: connect
+       6: disconnect
+     Descr="Indicates status of the power "
+EDESC
+#
+#
+#
+EVENT swL2PortSecurityViolationTrap .1.3.6.1.4.1.171.11.69.2.2.15.2.2 "Status Events" Normal
+FORMAT When the port_security trap is enabled, if there's a new MAC that violates the pre-defined  $+*
+SDESC
+When the port_security trap is enabled, if there's a new MAC that violates the pre-defined 
+port security configuration, trap will be sent out              
+Variables:
+  1: swL2PortSecurityPortIndex
+     Syntax="INTEGER"
+     Descr="Indicates the secured port to lock address learning."
+  2: swL2PortSecurityViolationMac
+     Syntax="OCTETSTR"
+     Descr="This object indicates the MAC address that violates the port security configuration."
+EDESC
+#
+#
+#
+#
+MIB: DES3828-L2MGMT-MIB (file:./L2mgmtDES3828.mib) converted on Sat Feb 23 20:40:55 2008 using snmpttconvertmib v1.2
+#
+#
+#
+EVENT swL2macNotification .1.3.6.1.4.1.171.11.69.1.2.15.0.3 "Status Events" Normal
+FORMAT FORM: This trap indicate the mac addresses variation in address table $+*
+#This trap indicate the mac addresses variation in address table . des3828.2.15.1:01 00 11 D8 89 52 E7 00 01 00 18 00 
+#REGEX ((\w+)\s+(\w+\s+\w+\s+\w+\s+\w+\s+\w+\s+\w+)\s+(\w+\s+\w+)\s+(\w+\s+\w+)\s+(\w+))(type=$1 MAC=$2 unit=$3 port=$4 5=$5)ige
+REGEX ((0[1-3]{1})\ +([A-Z0-9]{2}\ +[A-Z0-9]{2}\ +[A-Z0-9]{2}\ +[A-Z0-9]{2}\ +[A-Z0-9]{2}\ +[A-Z0-9]{2})\ +([A-Z0-9]{2}\ +[A-Z0-9]{2})\ +([A-Z0-9]{2}\ +[A-Z0-9]{2})\ +([A-Z0-9]{2})\ *)("<br>   [type=$1 MAC=$2 unit=$3 port=$4 5=$5] ")ige
+REGEX (\[type=01)([type=add   )ig
+REGEX (\[type=02)([type=remove)ig
+REGEX (\[type=03)([type=move  )ig
+REGEX (mac=([A-Z0-9]{2})\ +([A-Z0-9]{2})\ +([A-Z0-9]{2})\ +([A-Z0-9]{2})\ +([A-Z0-9]{2})\ +([A-Z0-9]{2}))("mac=$1:$2:$3:$4:$5:$6")ige
+REGEX (t=([A-Z0-9]{2})\ +([A-Z0-9]{2}))("t=".sprintf("%01d",hex($1.$2)))ige
+
+SDESC
+ This trap indicate the mac addresses variation in address table . 
+Variables:
+  1: swL2macNotifyInfo
+     Syntax="OCTETSTR"
+     Descr="This object indicates the last time reboot information.
+            "
+EDESC
+#
+#
+#
+EVENT swL2porttypechgNotification .1.3.6.1.4.1.171.11.69.1.2.15.0.4 "Status Events" Normal
+FORMAT  This trap indicate the port type change.  $+*
+SDESC
+ This trap indicate the port type change. 
+Variables:
+  1: swL2PortInfoPortIndex
+     Syntax="INTEGER"
+     Descr="This object indicates the module's port number.(1..Max port
+	        number in the module)"
+  2: swL2PortInfoType
+     Syntax="INTEGER"
+       1: portType-100Base-TX
+       2: portType-100Base-FX
+       3: portType-100Base-FL
+       4: portType-1000Base-TX
+       5: portType-1000Base-SX
+       6: portType-1000Base-LX
+       7: none
+     Descr="This object indicates the connector type of this port."
+EDESC
+#
+#
+#
+EVENT swPowerStatusChg .1.3.6.1.4.1.171.11.69.1.2.15.0.5 "Status Events" Normal
+FORMAT Power Status change notification. $+*
+SDESC
+Power Status change notification.
+Variables:
+  1: swDevInfoPowerUnitIndex
+     Syntax="INTEGER"
+     Descr="Indicates ID of the unit in the System"
+  2: swDevInfoPowerID
+     Syntax="INTEGER"
+     Descr="Indicates ID of the power "
+  3: swDevInfoPowerStatus
+     Syntax="INTEGER"
+       0: other
+       1: lowVoltage
+       2: overCurrent
+       3: working
+       4: fail
+       5: connect
+       6: disconnect
+     Descr="Indicates status of the power "
+EDESC
+#
+#
+#
+EVENT swPowerFailure .1.3.6.1.4.1.171.11.69.1.2.15.0.6 "Status Events" Normal
+FORMAT Power Failure notification. $+*
+SDESC
+Power Failure notification.
+Variables:
+  1: swDevInfoPowerUnitIndex
+     Syntax="INTEGER"
+     Descr="Indicates ID of the unit in the System"
+  2: swDevInfoPowerID
+     Syntax="INTEGER"
+     Descr="Indicates ID of the power "
+  3: swDevInfoPowerStatus
+     Syntax="INTEGER"
+       0: other
+       1: lowVoltage
+       2: overCurrent
+       3: working
+       4: fail
+       5: connect
+       6: disconnect
+     Descr="Indicates status of the power "
+EDESC
+#
+#
+#
+EVENT swPowerRecover .1.3.6.1.4.1.171.11.69.1.2.15.0.7 "Status Events" Normal
+FORMAT Power Recover notification. $+*
+SDESC
+Power Recover notification.
+Variables:
+  1: swDevInfoPowerUnitIndex
+     Syntax="INTEGER"
+     Descr="Indicates ID of the unit in the System"
+  2: swDevInfoPowerID
+     Syntax="INTEGER"
+     Descr="Indicates ID of the power "
+  3: swDevInfoPowerStatus
+     Syntax="INTEGER"
+       0: other
+       1: lowVoltage
+       2: overCurrent
+       3: working
+       4: fail
+       5: connect
+       6: disconnect
+     Descr="Indicates status of the power "
+EDESC
+#
+#
+#
+EVENT swL2PortSecurityViolationTrap .1.3.6.1.4.1.171.11.69.1.2.15.2.2 "Status Events" Normal
+FORMAT When the port_security trap is enabled, if there's a new MAC that violates the pre-defined  $+*
+SDESC
+When the port_security trap is enabled, if there's a new MAC that violates the pre-defined 
+port security configuration, trap will be sent out              
+Variables:
+  1: swL2PortSecurityPortIndex
+     Syntax="INTEGER"
+     Descr="Indicates the secured port to lock address learning."
+  2: swL2PortSecurityViolationMac
+     Syntax="OCTETSTR"
+     Descr="This object indicates the MAC address that violates the port security configuration."
+EDESC
+#
+#
+#
+#
+MIB: DES3828P-L2MGMT-MIB (file:./L2mgmtDES3828P.mib) converted on Sat Feb 23 20:40:55 2008 using snmpttconvertmib v1.2
+#
+#
+#
+EVENT swL2macNotification .1.3.6.1.4.1.171.11.69.3.2.15.0.3 "Status Events" Normal
+FORMAT  This trap indicate the mac addresses variation in address table .  $+*
+SDESC
+ This trap indicate the mac addresses variation in address table . 
+Variables:
+  1: swL2macNotifyInfo
+     Syntax="OCTETSTR"
+     Descr="This object indicates the last time reboot information.
+            "
+EDESC
+#
+#
+#
+EVENT swL2porttypechgNotification .1.3.6.1.4.1.171.11.69.3.2.15.0.4 "Status Events" Normal
+FORMAT  This trap indicate the port type change.  $+*
+SDESC
+ This trap indicate the port type change. 
+Variables:
+  1: swL2PortInfoPortIndex
+     Syntax="INTEGER"
+     Descr="This object indicates the module's port number.(1..Max port
+	        number in the module)"
+  2: swL2PortInfoType
+     Syntax="INTEGER"
+       1: portType-100Base-TX
+       2: portType-100Base-FX
+       3: portType-100Base-FL
+       4: portType-1000Base-TX
+       5: portType-1000Base-SX
+       6: portType-1000Base-LX
+       7: none
+     Descr="This object indicates the connector type of this port."
+EDESC
+#
+#
+#
+EVENT swPowerStatusChg .1.3.6.1.4.1.171.11.69.3.2.15.0.5 "Status Events" Normal
+FORMAT Power Status change notification. $+*
+SDESC
+Power Status change notification.
+Variables:
+  1: swDevInfoPowerUnitIndex
+     Syntax="INTEGER"
+     Descr="Indicates ID of the unit in the System"
+  2: swDevInfoPowerID
+     Syntax="INTEGER"
+     Descr="Indicates ID of the power "
+  3: swDevInfoPowerStatus
+     Syntax="INTEGER"
+       0: other
+       1: lowVoltage
+       2: overCurrent
+       3: working
+       4: fail
+       5: connect
+       6: disconnect
+     Descr="Indicates status of the power "
+EDESC
+#
+#
+#
+EVENT swPowerFailure .1.3.6.1.4.1.171.11.69.3.2.15.0.6 "Status Events" Normal
+FORMAT Power Failure notification. $+*
+SDESC
+Power Failure notification.
+Variables:
+  1: swDevInfoPowerUnitIndex
+     Syntax="INTEGER"
+     Descr="Indicates ID of the unit in the System"
+  2: swDevInfoPowerID
+     Syntax="INTEGER"
+     Descr="Indicates ID of the power "
+  3: swDevInfoPowerStatus
+     Syntax="INTEGER"
+       0: other
+       1: lowVoltage
+       2: overCurrent
+       3: working
+       4: fail
+       5: connect
+       6: disconnect
+     Descr="Indicates status of the power "
+EDESC
+#
+#
+#
+EVENT swPowerRecover .1.3.6.1.4.1.171.11.69.3.2.15.0.7 "Status Events" Normal
+FORMAT Power Recover notification. $+*
+SDESC
+Power Recover notification.
+Variables:
+  1: swDevInfoPowerUnitIndex
+     Syntax="INTEGER"
+     Descr="Indicates ID of the unit in the System"
+  2: swDevInfoPowerID
+     Syntax="INTEGER"
+     Descr="Indicates ID of the power "
+  3: swDevInfoPowerStatus
+     Syntax="INTEGER"
+       0: other
+       1: lowVoltage
+       2: overCurrent
+       3: working
+       4: fail
+       5: connect
+       6: disconnect
+     Descr="Indicates status of the power "
+EDESC
+#
+#
+#
+EVENT swL2PortSecurityViolationTrap .1.3.6.1.4.1.171.11.69.3.2.15.2.2 "Status Events" Normal
+FORMAT When the port_security trap is enabled, if there's a new MAC that violates the pre-defined  $+*
+SDESC
+When the port_security trap is enabled, if there's a new MAC that violates the pre-defined 
+port security configuration, trap will be sent out              
+Variables:
+  1: swL2PortSecurityPortIndex
+     Syntax="INTEGER"
+     Descr="Indicates the secured port to lock address learning."
+  2: swL2PortSecurityViolationMac
+     Syntax="OCTETSTR"
+     Descr="This object indicates the MAC address that violates the port security configuration."
+EDESC
+#
+#
+#
+#
+MIB: DES3852-L2MGMT-MIB (file:./L2mgmtDES3852.mib) converted on Sat Feb 23 20:40:55 2008 using snmpttconvertmib v1.2
+#
+#
+#
+EVENT swL2macNotification .1.3.6.1.4.1.171.11.69.4.2.15.0.3 "Status Events" Normal
+FORMAT  This trap indicate the mac addresses variation in address table .  $+*
+SDESC
+ This trap indicate the mac addresses variation in address table . 
+Variables:
+  1: swL2macNotifyInfo
+     Syntax="OCTETSTR"
+     Descr="This object indicates the last time reboot information.
+            "
+EDESC
+#
+#
+#
+EVENT swL2porttypechgNotification .1.3.6.1.4.1.171.11.69.4.2.15.0.4 "Status Events" Normal
+FORMAT  This trap indicate the port type change.  $+*
+SDESC
+ This trap indicate the port type change. 
+Variables:
+  1: swL2PortInfoPortIndex
+     Syntax="INTEGER"
+     Descr="This object indicates the module's port number.(1..Max port
+	        number in the module)"
+  2: swL2PortInfoType
+     Syntax="INTEGER"
+       1: portType-100Base-TX
+       2: portType-100Base-FX
+       3: portType-100Base-FL
+       4: portType-1000Base-TX
+       5: portType-1000Base-SX
+       6: portType-1000Base-LX
+       7: none
+     Descr="This object indicates the connector type of this port."
+EDESC
+#
+#
+#
+EVENT swPowerStatusChg .1.3.6.1.4.1.171.11.69.4.2.15.0.5 "Status Events" Normal
+FORMAT Power Status change notification. $+*
+SDESC
+Power Status change notification.
+Variables:
+  1: swDevInfoPowerUnitIndex
+     Syntax="INTEGER"
+     Descr="Indicates ID of the unit in the System"
+  2: swDevInfoPowerID
+     Syntax="INTEGER"
+     Descr="Indicates ID of the power "
+  3: swDevInfoPowerStatus
+     Syntax="INTEGER"
+       0: other
+       1: lowVoltage
+       2: overCurrent
+       3: working
+       4: fail
+       5: connect
+       6: disconnect
+     Descr="Indicates status of the power "
+EDESC
+#
+#
+#
+EVENT swPowerFailure .1.3.6.1.4.1.171.11.69.4.2.15.0.6 "Status Events" Normal
+FORMAT Power Failure notification. $+*
+SDESC
+Power Failure notification.
+Variables:
+  1: swDevInfoPowerUnitIndex
+     Syntax="INTEGER"
+     Descr="Indicates ID of the unit in the System"
+  2: swDevInfoPowerID
+     Syntax="INTEGER"
+     Descr="Indicates ID of the power "
+  3: swDevInfoPowerStatus
+     Syntax="INTEGER"
+       0: other
+       1: lowVoltage
+       2: overCurrent
+       3: working
+       4: fail
+       5: connect
+       6: disconnect
+     Descr="Indicates status of the power "
+EDESC
+#
+#
+#
+EVENT swPowerRecover .1.3.6.1.4.1.171.11.69.4.2.15.0.7 "Status Events" Normal
+FORMAT Power Recover notification. $+*
+SDESC
+Power Recover notification.
+Variables:
+  1: swDevInfoPowerUnitIndex
+     Syntax="INTEGER"
+     Descr="Indicates ID of the unit in the System"
+  2: swDevInfoPowerID
+     Syntax="INTEGER"
+     Descr="Indicates ID of the power "
+  3: swDevInfoPowerStatus
+     Syntax="INTEGER"
+       0: other
+       1: lowVoltage
+       2: overCurrent
+       3: working
+       4: fail
+       5: connect
+       6: disconnect
+     Descr="Indicates status of the power "
+EDESC
+#
+#
+#
+EVENT swL2PortSecurityViolationTrap .1.3.6.1.4.1.171.11.69.4.2.15.2.2 "Status Events" Normal
+FORMAT When the port_security trap is enabled, if there's a new MAC that violates the pre-defined  $+*
+SDESC
+When the port_security trap is enabled, if there's a new MAC that violates the pre-defined 
+port security configuration, trap will be sent out              
+Variables:
+  1: swL2PortSecurityPortIndex
+     Syntax="INTEGER"
+     Descr="Indicates the secured port to lock address learning."
+  2: swL2PortSecurityViolationMac
+     Syntax="OCTETSTR"
+     Descr="This object indicates the MAC address that violates the port security configuration."
+EDESC
+#
+#
+#
+#
+MIB: DES3852P-L2MGMT-MIB (file:./L2mgmtDES3852P.mib) converted on Sat Feb 23 20:40:55 2008 using snmpttconvertmib v1.2
+#
+#
+#
+EVENT swL2macNotification .1.3.6.1.4.1.171.11.69.5.2.15.0.3 "Status Events" Normal
+FORMAT  This trap indicate the mac addresses variation in address table .  $+*
+SDESC
+ This trap indicate the mac addresses variation in address table . 
+Variables:
+  1: swL2macNotifyInfo
+     Syntax="OCTETSTR"
+     Descr="This object indicates the last time reboot information.
+            "
+EDESC
+#
+#
+#
+EVENT swL2porttypechgNotification .1.3.6.1.4.1.171.11.69.5.2.15.0.4 "Status Events" Normal
+FORMAT  This trap indicate the port type change.  $+*
+SDESC
+ This trap indicate the port type change. 
+Variables:
+  1: swL2PortInfoPortIndex
+     Syntax="INTEGER"
+     Descr="This object indicates the module's port number.(1..Max port
+	        number in the module)"
+  2: swL2PortInfoType
+     Syntax="INTEGER"
+       1: portType-100Base-TX
+       2: portType-100Base-FX
+       3: portType-100Base-FL
+       4: portType-1000Base-TX
+       5: portType-1000Base-SX
+       6: portType-1000Base-LX
+       7: none
+     Descr="This object indicates the connector type of this port."
+EDESC
+#
+#
+#
+EVENT swPowerStatusChg .1.3.6.1.4.1.171.11.69.5.2.15.0.5 "Status Events" Normal
+FORMAT Power Status change notification. $+*
+SDESC
+Power Status change notification.
+Variables:
+  1: swDevInfoPowerUnitIndex
+     Syntax="INTEGER"
+     Descr="Indicates ID of the unit in the System"
+  2: swDevInfoPowerID
+     Syntax="INTEGER"
+     Descr="Indicates ID of the power "
+  3: swDevInfoPowerStatus
+     Syntax="INTEGER"
+       0: other
+       1: lowVoltage
+       2: overCurrent
+       3: working
+       4: fail
+       5: connect
+       6: disconnect
+     Descr="Indicates status of the power "
+EDESC
+#
+#
+#
+EVENT swPowerFailure .1.3.6.1.4.1.171.11.69.5.2.15.0.6 "Status Events" Normal
+FORMAT Power Failure notification. $+*
+SDESC
+Power Failure notification.
+Variables:
+  1: swDevInfoPowerUnitIndex
+     Syntax="INTEGER"
+     Descr="Indicates ID of the unit in the System"
+  2: swDevInfoPowerID
+     Syntax="INTEGER"
+     Descr="Indicates ID of the power "
+  3: swDevInfoPowerStatus
+     Syntax="INTEGER"
+       0: other
+       1: lowVoltage
+       2: overCurrent
+       3: working
+       4: fail
+       5: connect
+       6: disconnect
+     Descr="Indicates status of the power "
+EDESC
+#
+#
+#
+EVENT swPowerRecover .1.3.6.1.4.1.171.11.69.5.2.15.0.7 "Status Events" Normal
+FORMAT Power Recover notification. $+*
+SDESC
+Power Recover notification.
+Variables:
+  1: swDevInfoPowerUnitIndex
+     Syntax="INTEGER"
+     Descr="Indicates ID of the unit in the System"
+  2: swDevInfoPowerID
+     Syntax="INTEGER"
+     Descr="Indicates ID of the power "
+  3: swDevInfoPowerStatus
+     Syntax="INTEGER"
+       0: other
+       1: lowVoltage
+       2: overCurrent
+       3: working
+       4: fail
+       5: connect
+       6: disconnect
+     Descr="Indicates status of the power "
+EDESC
+#
+#
+#
+EVENT swL2PortSecurityViolationTrap .1.3.6.1.4.1.171.11.69.5.2.15.2.2 "Status Events" Normal
+FORMAT When the port_security trap is enabled, if there's a new MAC that violates the pre-defined  $+*
+SDESC
+When the port_security trap is enabled, if there's a new MAC that violates the pre-defined 
+port security configuration, trap will be sent out              
+Variables:
+  1: swL2PortSecurityPortIndex
+     Syntax="INTEGER"
+     Descr="Indicates the secured port to lock address learning."
+  2: swL2PortSecurityViolationMac
+     Syntax="OCTETSTR"
+     Descr="This object indicates the MAC address that violates the port security configuration."
+EDESC
+#
+#
+#
+#
+MIB: DES3828DC-L3MGMT-MIB (file:./L3mgmtDes3828DC.mib) converted on Sat Feb 23 20:40:55 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: DES3828-L3MGMT-MIB (file:./L3mgmtDes3828.mib) converted on Sat Feb 23 20:40:55 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: DES3828P-L3MGMT-MIB (file:./L3mgmtDes3828P.mib) converted on Sat Feb 23 20:40:55 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: DES3852-L3MGMT-MIB (file:./L3mgmtDes3852.mib) converted on Sat Feb 23 20:40:55 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: DES3852P-L3MGMT-MIB (file:./L3mgmtDes3852P.mib) converted on Sat Feb 23 20:40:56 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: LAG-MIB (file:./Lag.mib) converted on Sat Feb 23 20:40:56 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: Mac-Based-Authentication-MIB (file:./mba.mib) converted on Sat Feb 23 20:40:56 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: PKT-STORM-CTRL-MIB (file:./PktStormCtrl.mib) converted on Sat Feb 23 20:40:56 2008 using snmpttconvertmib v1.2
+#
+#
+#
+EVENT swPktStormOccurred .1.3.6.1.4.1.171.12.25.5.0.1 "Status Events" Normal
+FORMAT The trap is sent when packet storm is detected by packet storm mechanism and take $+*
+SDESC
+The trap is sent when packet storm is detected by packet storm mechanism and take
+shutdown as action. 
+Variables:
+  1: swPktStormCtrlPortIndex
+     Syntax="INTEGER"
+     Descr="This object indicates the device's port number.(1..Max port
+        number in the device).Used to specify a range of ports to be 
+        configured."
+EDESC
+#
+#
+#
+EVENT swPktStormCleared .1.3.6.1.4.1.171.12.25.5.0.2 "Status Events" Normal
+FORMAT The trap is sent when the packet storm is cleared by packet storm mechanism.  $+*
+SDESC
+The trap is sent when the packet storm is cleared by packet storm mechanism. 
+Variables:
+  1: swPktStormCtrlPortIndex
+     Syntax="INTEGER"
+     Descr="This object indicates the device's port number.(1..Max port
+        number in the device).Used to specify a range of ports to be 
+        configured."
+EDESC
+#
+#
+#
+EVENT swPktStormDisablePort .1.3.6.1.4.1.171.12.25.5.0.3 "Status Events" Normal
+FORMAT The trap is sent when the port is disabled by packet storm mechanism.  $+*
+SDESC
+The trap is sent when the port is disabled by packet storm mechanism. 
+Variables:
+  1: swPktStormCtrlPortIndex
+     Syntax="INTEGER"
+     Descr="This object indicates the device's port number.(1..Max port
+        number in the device).Used to specify a range of ports to be 
+        configured."
+EDESC
+#
+#
+#
+#
+MIB: PoE-MIB (file:./PoE.mib) converted on Sat Feb 23 20:40:56 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: RFC1215-MIB (file:./Rfc-1215.mib) converted on Sat Feb 23 20:40:56 2008 using snmpttconvertmib v1.2
+#
+#
+#
+EVENT coldStart .1.3.6.1.2.1.11.0.0 "Status Events" Normal
+FORMAT A coldStart trap signifies that the sending $+*
+SDESC
+A coldStart trap signifies that the sending
+protocol entity is reinitializing itself such
+that the agent's configuration or the rotocol
+entity implementation may be altered.
+EDESC
+#
+#
+#
+EVENT warmStart .1.3.6.1.2.1.11.0.1 "Status Events" Normal
+FORMAT A warmStart trap signifies that the sending $+*
+SDESC
+A warmStart trap signifies that the sending
+protocol entity is reinitializing itself such
+that neither the agent configuration nor the
+protocol entity implementation is altered.
+EDESC
+#
+#
+#
+EVENT linkDown .1.3.6.1.2.1.11.0.2 "Status Events" Normal
+FORMAT A linkDown trap signifies that the sending $+*
+SDESC
+A linkDown trap signifies that the sending
+protocol entity recognizes a failure in one of
+the communication links represented in the
+agent's configuration.
+Variables:
+  1: ifIndex
+     Syntax="INTEGER"
+     Descr="A unique value for each interface.  Its value
+            ranges between 1 and the value of ifNumber.  The
+            value for each interface must remain constant at
+            least from one re-initialization of the entity's
+            network management system to the next re-
+            initialization."
+EDESC
+#
+#
+#
+EVENT linkUp .1.3.6.1.2.1.11.0.3 "Status Events" Normal
+FORMAT A linkUp trap signifies that the sending $+*
+SDESC
+A linkUp trap signifies that the sending
+protocol entity recognizes that one of the
+communication links represented in the agent's
+configuration has come up.
+Variables:
+  1: ifIndex
+     Syntax="INTEGER"
+     Descr="A unique value for each interface.  Its value
+            ranges between 1 and the value of ifNumber.  The
+            value for each interface must remain constant at
+            least from one re-initialization of the entity's
+            network management system to the next re-
+            initialization."
+EDESC
+#
+#
+#
+EVENT authenticationFailure .1.3.6.1.2.1.11.0.4 "Status Events" Normal
+FORMAT An authenticationFailure trap signifies that $+*
+SDESC
+An authenticationFailure trap signifies that
+the sending protocol entity is the addressee
+of a protocol message that is not properly
+authenticated.  While implementations of the
+SNMP must be capable of generating this trap,
+they must also be capable of suppressing the
+emission of such traps via an implementation-
+specific mechanism.
+EDESC
+#
+#
+#
+EVENT egpNeighborLoss .1.3.6.1.2.1.11.0.5 "Status Events" Normal
+FORMAT An egpNeighborLoss trap signifies that an EGP $+*
+SDESC
+An egpNeighborLoss trap signifies that an EGP
+neighbor for whom the sending protocol entity
+was an EGP peer has been marked down and the
+peer relationship no longer obtains.
+Variables:
+  1: egpNeighAddr
+     Syntax="IPADDR"
+     Descr="The IP address of this entry's EGP neighbor."
+EDESC
+#
+#
+#
+#
+MIB: OSPF-MIB (file:./rfc1850.mib) converted on Sat Feb 23 20:40:56 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: SNMPv2-MIB (file:./rfc1907.mib) converted on Sat Feb 23 20:40:56 2008 using snmpttconvertmib v1.2
+#
+#
+#
+EVENT coldStart .1.3.6.1.6.3.1.1.5.1 "Status Events" Normal
+FORMAT A coldStart trap signifies that the SNMPv2 entity, acting $+*
+SDESC
+A coldStart trap signifies that the SNMPv2 entity, acting
+in an agent role, is reinitializing itself and that its
+configuration may have been altered.
+EDESC
+#
+#
+#
+EVENT warmStart .1.3.6.1.6.3.1.1.5.2 "Status Events" Normal
+FORMAT A warmStart trap signifies that the SNMPv2 entity, acting $+*
+SDESC
+A warmStart trap signifies that the SNMPv2 entity, acting
+in an agent role, is reinitializing itself such that its
+configuration is unaltered.
+EDESC
+#
+#
+#
+EVENT authenticationFailure .1.3.6.1.6.3.1.1.5.5 "Status Events" Normal
+FORMAT An authenticationFailure trap signifies that the SNMPv2 $+*
+SDESC
+An authenticationFailure trap signifies that the SNMPv2
+entity, acting in an agent role, has received a protocol
+message that is not properly authenticated.  While all
+implementations of the SNMPv2 must be capable of generating
+this trap, the snmpEnableAuthenTraps object indicates
+whether this trap will be generated.
+EDESC
+#
+#
+#
+#
+MIB: IP-FORWARD-MIB (file:./rfc2096.mib) converted on Sat Feb 23 20:40:56 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: SNMP-FRAMEWORK-MIB (file:./rfc2571.mib) converted on Sat Feb 23 20:40:56 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: SNMP-MPD-MIB (file:./rfc2572.mib) converted on Sat Feb 23 20:40:56 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: SNMP-TARGET-MIB (file:./rfc2573.mib) converted on Sat Feb 23 20:40:56 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: SNMP-NOTIFICATION-MIB (file:./rfc2573.mib) converted on Sat Feb 23 20:40:56 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: SNMP-USER-BASED-SM-MIB (file:./rfc2574.mib) converted on Sat Feb 23 20:40:56 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: SNMP-VIEW-BASED-ACM-MIB (file:./rfc2575.mib) converted on Sat Feb 23 20:40:57 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: SNMP-COMMUNITY-MIB (file:./rfc2576.mib) converted on Sat Feb 23 20:40:57 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: RADIUS-AUTH-CLIENT-MIB (file:./rfc2618.mib) converted on Sat Feb 23 20:40:57 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: RADIUS-ACC-CLIENT-MIB (file:./rfc2620.mib) converted on Sat Feb 23 20:40:57 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: EtherLike-MIB (file:./rfc2665.mib) converted on Sat Feb 23 20:40:57 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: P-BRIDGE-MIB (file:./rfc2674.mib) converted on Sat Feb 23 20:40:57 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: Q-BRIDGE-MIB (file:./rfc2674.mib) converted on Sat Feb 23 20:40:57 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: VRRP-MIB (file:./rfc2787.mib) converted on Sat Feb 23 20:40:57 2008 using snmpttconvertmib v1.2
+#
+#
+#
+EVENT vrrpTrapNewMaster .1.3.6.1.2.1.68.0.1 "Status Events" Normal
+FORMAT The newMaster trap indicates that the sending agent $+*
+SDESC
+The newMaster trap indicates that the sending agent
+has transitioned to 'Master' state.
+Variables:
+  1: vrrpOperMasterIpAddr
+     Syntax="IPADDR"
+     Descr="The master router's real (primary) IP address. This is
+         the IP address listed as the source in VRRP advertisement
+         last received by this virtual router."
+EDESC
+#
+#
+#
+EVENT vrrpTrapAuthFailure .1.3.6.1.2.1.68.0.2 "Status Events" Normal
+FORMAT A vrrpAuthFailure trap signifies that a packet has $+*
+SDESC
+A vrrpAuthFailure trap signifies that a packet has
+been received from a router whose authentication key
+or authentication type conflicts with this router's
+authentication key or authentication type. Implementation
+of this trap is optional.
+Variables:
+  1: vrrpTrapPacketSrc
+     Syntax="IPADDR"
+     Descr="The IP address of an inbound VRRP packet. Used by
+          vrrpTrapAuthFailure trap."
+  2: vrrpTrapAuthErrorType
+     Syntax="INTEGER"
+       1: invalidAuthType
+       2: authTypeMismatch
+       3: authFailure
+     Descr="Potential types of configuration conflicts.
+         Used by vrrpAuthFailure trap."
+EDESC
+#
+#
+#
+#
+MIB: RMON-MIB (file:./rfc2819.mib) converted on Sat Feb 23 20:40:57 2008 using snmpttconvertmib v1.2
+#
+#
+#
+EVENT risingAlarm .1.3.6.1.2.1.16.0.1 "Status Events" Normal
+FORMAT The SNMP trap that is generated when an alarm $+*
+SDESC
+The SNMP trap that is generated when an alarm
+entry crosses its rising threshold and generates
+an event that is configured for sending SNMP
+traps.
+Variables:
+  1: alarmIndex
+     Syntax="INTEGER32"
+     Descr="An index that uniquely identifies an entry in the
+         alarm table.  Each such entry defines a
+         diagnostic sample at a particular interval
+         for an object on the device."
+  2: alarmVariable
+     Syntax="OBJECTID"
+     Descr="The object identifier of the particular variable to be
+         sampled.  Only variables that resolve to an ASN.1 primitive
+         type of INTEGER (INTEGER, Integer32, Counter32, Counter64,
+         Gauge, or TimeTicks) may be sampled.
+
+         Because SNMP access control is articulated entirely
+         in terms of the contents of MIB views, no access
+         control mechanism exists that can restrict the value of
+         this object to identify only those objects that exist
+         in a particular MIB view.  Because there is thus no
+         acceptable means of restricting the read access that
+         could be obtained through the alarm mechanism, the
+         probe must only grant write access to this object in
+
+         those views that have read access to all objects on
+         the probe.
+
+         During a set operation, if the supplied variable name is
+         not available in the selected MIB view, a badValue error
+         must be returned.  If at any time the variable name of
+         an established alarmEntry is no longer available in the
+         selected MIB view, the probe must change the status of
+         this alarmEntry to invalid(4).
+
+         This object may not be modified if the associated
+         alarmStatus object is equal to valid(1)."
+  3: alarmSampleType
+     Syntax="INTEGER"
+       1: absoluteValue
+       2: deltaValue
+     Descr="The method of sampling the selected variable and
+         calculating the value to be compared against the
+         thresholds.  If the value of this object is
+         absoluteValue(1), the value of the selected variable
+         will be compared directly with the thresholds at the
+         end of the sampling interval.  If the value of this
+         object is deltaValue(2), the value of the selected
+         variable at the last sample will be subtracted from
+         the current value, and the difference compared with
+         the thresholds.
+
+         This object may not be modified if the associated
+         alarmStatus object is equal to valid(1)."
+  4: alarmValue
+     Syntax="INTEGER32"
+     Descr="The value of the statistic during the last sampling
+         period.  For example, if the sample type is deltaValue,
+         this value will be the difference between the samples
+         at the beginning and end of the period.  If the sample
+         type is absoluteValue, this value will be the sampled
+         value at the end of the period.
+
+         This is the value that is compared with the rising and
+         falling thresholds.
+
+         The value during the current sampling period is not
+         made available until the period is completed and will
+         remain available until the next period completes."
+  5: alarmRisingThreshold
+     Syntax="INTEGER32"
+     Descr="A threshold for the sampled statistic.  When the current
+         sampled value is greater than or equal to this threshold,
+         and the value at the last sampling interval was less than
+         this threshold, a single event will be generated.
+         A single event will also be generated if the first
+         sample after this entry becomes valid is greater than or
+         equal to this threshold and the associated
+         alarmStartupAlarm is equal to risingAlarm(1) or
+         risingOrFallingAlarm(3).
+
+         After a rising event is generated, another such event
+
+         will not be generated until the sampled value
+         falls below this threshold and reaches the
+         alarmFallingThreshold.
+
+         This object may not be modified if the associated
+         alarmStatus object is equal to valid(1)."
+EDESC
+#
+#
+#
+EVENT fallingAlarm .1.3.6.1.2.1.16.0.2 "Status Events" Normal
+FORMAT The SNMP trap that is generated when an alarm $+*
+SDESC
+The SNMP trap that is generated when an alarm
+entry crosses its falling threshold and generates
+an event that is configured for sending SNMP
+traps.
+Variables:
+  1: alarmIndex
+     Syntax="INTEGER32"
+     Descr="An index that uniquely identifies an entry in the
+         alarm table.  Each such entry defines a
+         diagnostic sample at a particular interval
+         for an object on the device."
+  2: alarmVariable
+     Syntax="OBJECTID"
+     Descr="The object identifier of the particular variable to be
+         sampled.  Only variables that resolve to an ASN.1 primitive
+         type of INTEGER (INTEGER, Integer32, Counter32, Counter64,
+         Gauge, or TimeTicks) may be sampled.
+
+         Because SNMP access control is articulated entirely
+         in terms of the contents of MIB views, no access
+         control mechanism exists that can restrict the value of
+         this object to identify only those objects that exist
+         in a particular MIB view.  Because there is thus no
+         acceptable means of restricting the read access that
+         could be obtained through the alarm mechanism, the
+         probe must only grant write access to this object in
+
+         those views that have read access to all objects on
+         the probe.
+
+         During a set operation, if the supplied variable name is
+         not available in the selected MIB view, a badValue error
+         must be returned.  If at any time the variable name of
+         an established alarmEntry is no longer available in the
+         selected MIB view, the probe must change the status of
+         this alarmEntry to invalid(4).
+
+         This object may not be modified if the associated
+         alarmStatus object is equal to valid(1)."
+  3: alarmSampleType
+     Syntax="INTEGER"
+       1: absoluteValue
+       2: deltaValue
+     Descr="The method of sampling the selected variable and
+         calculating the value to be compared against the
+         thresholds.  If the value of this object is
+         absoluteValue(1), the value of the selected variable
+         will be compared directly with the thresholds at the
+         end of the sampling interval.  If the value of this
+         object is deltaValue(2), the value of the selected
+         variable at the last sample will be subtracted from
+         the current value, and the difference compared with
+         the thresholds.
+
+         This object may not be modified if the associated
+         alarmStatus object is equal to valid(1)."
+  4: alarmValue
+     Syntax="INTEGER32"
+     Descr="The value of the statistic during the last sampling
+         period.  For example, if the sample type is deltaValue,
+         this value will be the difference between the samples
+         at the beginning and end of the period.  If the sample
+         type is absoluteValue, this value will be the sampled
+         value at the end of the period.
+
+         This is the value that is compared with the rising and
+         falling thresholds.
+
+         The value during the current sampling period is not
+         made available until the period is completed and will
+         remain available until the next period completes."
+  5: alarmFallingThreshold
+     Syntax="INTEGER32"
+     Descr="A threshold for the sampled statistic.  When the current
+         sampled value is less than or equal to this threshold,
+         and the value at the last sampling interval was greater than
+         this threshold, a single event will be generated.
+         A single event will also be generated if the first
+         sample after this entry becomes valid is less than or
+         equal to this threshold and the associated
+         alarmStartupAlarm is equal to fallingAlarm(2) or
+         risingOrFallingAlarm(3).
+
+         After a falling event is generated, another such event
+         will not be generated until the sampled value
+         rises above this threshold and reaches the
+         alarmRisingThreshold.
+
+         This object may not be modified if the associated
+         alarmStatus object is equal to valid(1)."
+EDESC
+#
+#
+#
+#
+MIB: IPMROUTE-STD-MIB (file:./rfc2932.mib) converted on Sat Feb 23 20:40:57 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: IGMP-STD-MIB (file:./rfc2933.mib) converted on Sat Feb 23 20:40:57 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: PIM-MIB (file:./rfc2934.mib) converted on Sat Feb 23 20:40:57 2008 using snmpttconvertmib v1.2
+#
+#
+#
+EVENT pimNeighborLoss .1.3.6.1.3.61.1.0.1 "Status Events" Normal
+FORMAT A pimNeighborLoss trap signifies the loss of an adjacency $+*
+SDESC
+A pimNeighborLoss trap signifies the loss of an adjacency
+with a neighbor.  This trap should be generated when the
+neighbor timer expires, and the router has no other
+neighbors on the same interface with a lower IP address than
+itself.
+Variables:
+  1: pimNeighborIfIndex
+     Syntax="INTEGER32"
+     Descr="The value of ifIndex for the interface used to reach this
+            PIM neighbor."
+EDESC
+#
+#
+#
+#
+MIB: SAFEGUARD-ENGINE-MIB (file:./SafeGuard.mib) converted on Sat Feb 23 20:40:57 2008 using snmpttconvertmib v1.2
+#
+#
+#
+EVENT swSafeGuardChgToExhausted .1.3.6.1.4.1.171.12.19.4.1.0.1 "Status Events" Normal
+FORMAT This trap indicates System change operation mode from normal to exhausted. $+*
+SDESC
+This trap indicates System change operation mode from normal to exhausted.
+Variables:
+  1: swSafeGuardCurrentStatus
+     Syntax="INTEGER"
+       1: normal
+       2: exhausted
+     Descr="This object indicates current operation mode of Safe Guard "
+EDESC
+#
+#
+#
+EVENT swSafeGuardChgToNormal .1.3.6.1.4.1.171.12.19.4.1.0.2 "Status Events" Normal
+FORMAT This trap indicates System change operation mode from exhausted to normal. $+*
+SDESC
+This trap indicates System change operation mode from exhausted to normal.
+Variables:
+  1: swSafeGuardCurrentStatus
+     Syntax="INTEGER"
+       1: normal
+       2: exhausted
+     Descr="This object indicates current operation mode of Safe Guard "
+EDESC
+#
+#
+#
+#
+MIB: SINGLE-IP-MIB (file:./SingleIP.mib) converted on Sat Feb 23 20:40:57 2008 using snmpttconvertmib v1.2
+#
+#
+#
+EVENT swSingleIPMSColdStart .1.3.6.1.4.1.171.12.8.6.0.11 "Status Events" Normal
+FORMAT Commander switch will send swSingleIPMSColdStart notification to indicated $+*
+SDESC
+Commander switch will send swSingleIPMSColdStart notification to indicated
+host when its Member generate cold start notification.
+Variables:
+  1: swSingleIPMSID
+     Syntax="INTEGER"
+     Descr="The ID of the member switch ."
+  2: swSingleIPMSMacAddr
+     Syntax="OCTETSTR"
+     Descr="This object Specifies the MAC address of the member switch."
+EDESC
+#
+#
+#
+EVENT swSingleIPMSWarmStart .1.3.6.1.4.1.171.12.8.6.0.12 "Status Events" Normal
+FORMAT Commander switch will send swSingleIPMSWarmStart notification to indicated $+*
+SDESC
+Commander switch will send swSingleIPMSWarmStart notification to indicated
+host when its Member generate warm start notification.
+Variables:
+  1: swSingleIPMSID
+     Syntax="INTEGER"
+     Descr="The ID of the member switch ."
+  2: swSingleIPMSMacAddr
+     Syntax="OCTETSTR"
+     Descr="This object Specifies the MAC address of the member switch."
+EDESC
+#
+#
+#
+EVENT swSingleIPMSLinkDown .1.3.6.1.4.1.171.12.8.6.0.13 "Status Events" Normal
+FORMAT Commander switch will send swSingleIPMSLinkDown notification to indicated $+*
+SDESC
+Commander switch will send swSingleIPMSLinkDown notification to indicated
+host when its Member generate link down notification.
+Variables:
+  1: swSingleIPMSID
+     Syntax="INTEGER"
+     Descr="The ID of the member switch ."
+  2: swSingleIPMSMacAddr
+     Syntax="OCTETSTR"
+     Descr="This object Specifies the MAC address of the member switch."
+  3: ifIndex
+     Syntax="INTEGER"
+     Descr="A unique value for each interface.  Its value
+            ranges between 1 and the value of ifNumber.  The
+            value for each interface must remain constant at
+            least from one re-initialization of the entity's
+            network management system to the next re-
+            initialization."
+EDESC
+#
+#
+#
+EVENT swSingleIPMSLinkUp .1.3.6.1.4.1.171.12.8.6.0.14 "Status Events" Normal
+FORMAT If Commander switch will send swSingleIPMSLinkUp notification to indicated $+*
+SDESC
+If Commander switch will send swSingleIPMSLinkUp notification to indicated
+host when its Member generate link up notification.
+Variables:
+  1: swSingleIPMSID
+     Syntax="INTEGER"
+     Descr="The ID of the member switch ."
+  2: swSingleIPMSMacAddr
+     Syntax="OCTETSTR"
+     Descr="This object Specifies the MAC address of the member switch."
+  3: ifIndex
+     Syntax="INTEGER"
+     Descr="A unique value for each interface.  Its value
+            ranges between 1 and the value of ifNumber.  The
+            value for each interface must remain constant at
+            least from one re-initialization of the entity's
+            network management system to the next re-
+            initialization."
+EDESC
+#
+#
+#
+EVENT swSingleIPMSAuthFail .1.3.6.1.4.1.171.12.8.6.0.15 "Status Events" Normal
+FORMAT Commander switch will send swSingleIPMSAuthFail notification to indicated  $+*
+SDESC
+Commander switch will send swSingleIPMSAuthFail notification to indicated 
+host when it Member generate authentation failure notification.
+Variables:
+  1: swSingleIPMSID
+     Syntax="INTEGER"
+     Descr="The ID of the member switch ."
+  2: swSingleIPMSMacAddr
+     Syntax="OCTETSTR"
+     Descr="This object Specifies the MAC address of the member switch."
+EDESC
+#
+#
+#
+EVENT swSingleIPMSnewRoot .1.3.6.1.4.1.171.12.8.6.0.16 "Status Events" Normal
+FORMAT Commander switch will send swSingleIPMSnewRoot notification to indicated  $+*
+SDESC
+Commander switch will send swSingleIPMSnewRoot notification to indicated 
+host when it Member generate new root notification.
+Variables:
+  1: swSingleIPMSID
+     Syntax="INTEGER"
+     Descr="The ID of the member switch ."
+  2: swSingleIPMSMacAddr
+     Syntax="OCTETSTR"
+     Descr="This object Specifies the MAC address of the member switch."
+EDESC
+#
+#
+#
+EVENT swSingleIPMSTopologyChange .1.3.6.1.4.1.171.12.8.6.0.17 "Status Events" Normal
+FORMAT Commander switch will send swSingleIPMSTopologyChange notification to  $+*
+SDESC
+Commander switch will send swSingleIPMSTopologyChange notification to 
+indicated host when it Member generate topology chnage notification.
+Variables:
+  1: swSingleIPMSID
+     Syntax="INTEGER"
+     Descr="The ID of the member switch ."
+  2: swSingleIPMSMacAddr
+     Syntax="OCTETSTR"
+     Descr="This object Specifies the MAC address of the member switch."
+EDESC
+#
+#
+#
+EVENT swSingleIPMSrisingAlarm .1.3.6.1.4.1.171.12.8.6.0.18 "Status Events" Normal
+FORMAT Commander switch will send swSingleIPMSrisingAlarm notification to  $+*
+SDESC
+Commander switch will send swSingleIPMSrisingAlarm notification to 
+indicated host when it Member generate rising Alarm notification.
+Variables:
+  1: swSingleIPMSID
+     Syntax="INTEGER"
+     Descr="The ID of the member switch ."
+  2: swSingleIPMSMacAddr
+     Syntax="OCTETSTR"
+     Descr="This object Specifies the MAC address of the member switch."
+EDESC
+#
+#
+#
+EVENT swSingleIPMSfallingAlarm .1.3.6.1.4.1.171.12.8.6.0.19 "Status Events" Normal
+FORMAT Commander switch will send swSingleIPMSfallingAlarm notification to $+*
+SDESC
+Commander switch will send swSingleIPMSfallingAlarm notification to
+indicated host when it Member generate falling Alarm notification.
+Variables:
+  1: swSingleIPMSID
+     Syntax="INTEGER"
+     Descr="The ID of the member switch ."
+  2: swSingleIPMSMacAddr
+     Syntax="OCTETSTR"
+     Descr="This object Specifies the MAC address of the member switch."
+EDESC
+#
+#
+#
+EVENT swSingleIPMSmacNotification .1.3.6.1.4.1.171.12.8.6.0.20 "Status Events" Normal
+FORMAT Commander switch will send swSingleIPMSmacNotification notification to  $+*
+SDESC
+Commander switch will send swSingleIPMSmacNotification notification to 
+indicated host when it Member generate mac addresses variation notification.
+Variables:
+  1: swSingleIPMSID
+     Syntax="INTEGER"
+     Descr="The ID of the member switch ."
+  2: swSingleIPMSMacAddr
+     Syntax="OCTETSTR"
+     Descr="This object Specifies the MAC address of the member switch."
+  3: swSingleIPMSTrapMessage
+     Syntax="OCTETSTR"
+     Descr="The string that member switch sent."
+EDESC
+#
+#
+#
+EVENT swSingleIPMSPortTypeChange .1.3.6.1.4.1.171.12.8.6.0.21 "Status Events" Normal
+FORMAT Commander switch will send swSingleIPMSPortTypeChange notification to  $+*
+SDESC
+Commander switch will send swSingleIPMSPortTypeChange notification to 
+indicated host when it Member generate port type change notification.
+Variables:
+  1: swSingleIPMSID
+     Syntax="INTEGER"
+     Descr="The ID of the member switch ."
+  2: swSingleIPMSMacAddr
+     Syntax="OCTETSTR"
+     Descr="This object Specifies the MAC address of the member switch."
+  3: ifIndex
+     Syntax="INTEGER"
+     Descr="A unique value for each interface.  Its value
+            ranges between 1 and the value of ifNumber.  The
+            value for each interface must remain constant at
+            least from one re-initialization of the entity's
+            network management system to the next re-
+            initialization."
+  4: swSingleIPMSTrapMessage
+     Syntax="OCTETSTR"
+     Descr="The string that member switch sent."
+EDESC
+#
+#
+#
+EVENT swSingleIPMSPowerStatusChg .1.3.6.1.4.1.171.12.8.6.0.22 "Status Events" Normal
+FORMAT $+*
+SDESC
+
+Commander switch will send swSingleIPMSPowerStatusChg notification to 
+indicated host when it Member generate Power Status change notification.
+Variables:
+  1: swSingleIPMSID
+     Syntax="INTEGER"
+     Descr="The ID of the member switch ."
+  2: swSingleIPMSMacAddr
+     Syntax="OCTETSTR"
+     Descr="This object Specifies the MAC address of the member switch."
+  3: swSingleIPMSTrapMessage
+     Syntax="OCTETSTR"
+     Descr="The string that member switch sent."
+EDESC
+#
+#
+#
+EVENT swSingleIPMSPowerFailure .1.3.6.1.4.1.171.12.8.6.0.23 "Status Events" Normal
+FORMAT $+*
+SDESC
+
+Commander switch will send swSingleIPMSPowerFailure notification to indicated
+host when it Member generate Power Failure notification.
+Variables:
+  1: swSingleIPMSID
+     Syntax="INTEGER"
+     Descr="The ID of the member switch ."
+  2: swSingleIPMSMacAddr
+     Syntax="OCTETSTR"
+     Descr="This object Specifies the MAC address of the member switch."
+  3: swSingleIPMSTrapMessage
+     Syntax="OCTETSTR"
+     Descr="The string that member switch sent."
+EDESC
+#
+#
+#
+EVENT swSingleIPMSPowerRecover .1.3.6.1.4.1.171.12.8.6.0.24 "Status Events" Normal
+FORMAT $+*
+SDESC
+
+Commander switch will send swSingleIPMSPowerRecover notification to indicated 
+host when it Member generate Power Recover notification.
+Variables:
+  1: swSingleIPMSID
+     Syntax="INTEGER"
+     Descr="The ID of the member switch ."
+  2: swSingleIPMSMacAddr
+     Syntax="OCTETSTR"
+     Descr="This object Specifies the MAC address of the member switch."
+  3: swSingleIPMSTrapMessage
+     Syntax="OCTETSTR"
+     Descr="The string that member switch sent."
+EDESC
+#
+#
+#
+#
+MIB: SNMP-FRAMEWORK-MIB (file:./SNMP-FRAMEWORK-MIB.mib) converted on Sat Feb 23 20:40:58 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: SSH-MIB (file:./SSH.mib) converted on Sat Feb 23 20:40:58 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: SSL-MIB (file:./SSLMIB.mib) converted on Sat Feb 23 20:40:58 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: SW3800PRIMGMT-MIB (file:./SW3800PRIMGMT-mib.mib) converted on Sat Feb 23 20:40:58 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: SYSLOG-MIB (file:./SysLog.mib) converted on Sat Feb 23 20:40:58 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: WebBase-Access-Control-MIB (file:./wac.mib) converted on Sat Feb 23 20:40:58 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: WRED-MIB (file:./wred.mib) converted on Sat Feb 23 20:40:58 2008 using snmpttconvertmib v1.2

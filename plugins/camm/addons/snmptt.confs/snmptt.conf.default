@@ -1,0 +1,660 @@
+MIB: RFC1215-MIB (file:./Rfc-1215.mib) converted on Sat Feb 23 20:22:23 2008 using snmpttconvertmib v1.2
+#
+#
+#
+EVENT coldStart .1.3.6.1.2.1.11.0.0 "Status Events" Normal
+FORMAT A coldStart trap signifies that the sending $+*
+SDESC
+A coldStart trap signifies that the sending
+protocol entity is reinitializing itself such
+that the agent's configuration or the rotocol
+entity implementation may be altered.
+EDESC
+#
+#
+#
+EVENT warmStart .1.3.6.1.2.1.11.0.1 "Status Events" Normal
+FORMAT A warmStart trap signifies that the sending $+*
+SDESC
+A warmStart trap signifies that the sending
+protocol entity is reinitializing itself such
+that neither the agent configuration nor the
+protocol entity implementation is altered.
+EDESC
+#
+#
+#
+EVENT linkDown .1.3.6.1.2.1.11.0.2 "Status Events" Normal
+FORMAT A linkDown trap signifies that the sending $+*
+SDESC
+A linkDown trap signifies that the sending
+protocol entity recognizes a failure in one of
+the communication links represented in the
+agent's configuration.
+Variables:
+  1: ifIndex
+     Syntax="INTEGER"
+     Descr="A unique value for each interface.  Its value
+            ranges between 1 and the value of ifNumber.  The
+            value for each interface must remain constant at
+            least from one re-initialization of the entity's
+            network management system to the next re-
+            initialization."
+EDESC
+#
+#
+#
+EVENT linkUp .1.3.6.1.2.1.11.0.3 "Status Events" Normal
+FORMAT A linkUp trap signifies that the sending $+*
+SDESC
+A linkUp trap signifies that the sending
+protocol entity recognizes that one of the
+communication links represented in the agent's
+configuration has come up.
+Variables:
+  1: ifIndex
+     Syntax="INTEGER"
+     Descr="A unique value for each interface.  Its value
+            ranges between 1 and the value of ifNumber.  The
+            value for each interface must remain constant at
+            least from one re-initialization of the entity's
+            network management system to the next re-
+            initialization."
+EDESC
+#
+#
+#
+EVENT authenticationFailure .1.3.6.1.2.1.11.0.4 "Status Events" Normal
+FORMAT An authenticationFailure trap signifies that $+*
+SDESC
+An authenticationFailure trap signifies that
+the sending protocol entity is the addressee
+of a protocol message that is not properly
+authenticated.  While implementations of the
+SNMP must be capable of generating this trap,
+they must also be capable of suppressing the
+emission of such traps via an implementation-
+specific mechanism.
+EDESC
+#
+#
+#
+EVENT egpNeighborLoss .1.3.6.1.2.1.11.0.5 "Status Events" Normal
+FORMAT An egpNeighborLoss trap signifies that an EGP $+*
+SDESC
+An egpNeighborLoss trap signifies that an EGP
+neighbor for whom the sending protocol entity
+was an EGP peer has been marked down and the
+peer relationship no longer obtains.
+Variables:
+  1: egpNeighAddr
+     Syntax="IPADDR"
+     Descr="The IP address of this entry's EGP neighbor."
+EDESC
+#
+#
+#
+#
+MIB: DLINK-EQUIPMENT-MIB (file:./dlkEquipment.mib) converted on Sat Feb 23 20:22:22 2008 using snmpttconvertmib v1.2
+#
+#
+#
+EVENT swPowerFailure .1.3.6.1.4.1.171.12.11.2.2.2.0.2 "Status Events" Normal
+FORMAT Power Failure notification. $+*
+SDESC
+Power Failure notification.
+Variables:
+  1: swPowerUnitIndex
+     Syntax="INTEGER"
+     Descr="Indicates ID of the unit in the System"
+  2: swPowerID
+     Syntax="INTEGER"
+     Descr="Indicates ID of the power
+            1 : main power
+            2 : redundant power ."
+  3: swPowerStatus
+     Syntax="INTEGER"
+       0: other
+       1: lowVoltage
+       2: overCurrent
+       3: working
+       4: fail
+       5: connect
+       6: disconnect
+     Descr="Indicates status of the power "
+EDESC
+#
+#
+#
+EVENT swPowerRecover .1.3.6.1.4.1.171.12.11.2.2.2.0.3 "Status Events" Normal
+FORMAT Power Recover notification. $+*
+SDESC
+Power Recover notification.
+Variables:
+  1: swPowerUnitIndex
+     Syntax="INTEGER"
+     Descr="Indicates ID of the unit in the System"
+  2: swPowerID
+     Syntax="INTEGER"
+     Descr="Indicates ID of the power
+            1 : main power
+            2 : redundant power ."
+  3: swPowerStatus
+     Syntax="INTEGER"
+       0: other
+       1: lowVoltage
+       2: overCurrent
+       3: working
+       4: fail
+       5: connect
+       6: disconnect
+     Descr="Indicates status of the power "
+EDESC
+#
+#
+#
+#
+MIB: SAFEGUARD-ENGINE-MIB (file:./SafeGuard.mib) converted on Sat Feb 23 20:22:25 2008 using snmpttconvertmib v1.2
+#
+#
+#
+EVENT swSafeGuardChgToExhausted .1.3.6.1.4.1.171.12.19.4.1.0.1 "Status Events" Normal
+FORMAT This trap indicates System change operation mode from normal to exhausted. $+*
+SDESC
+This trap indicates System change operation mode from normal to exhausted.
+Variables:
+  1: swSafeGuardCurrentStatus
+     Syntax="INTEGER"
+       1: normal
+       2: exhausted
+     Descr="This object indicates current operation mode of Safe Guard "
+EDESC
+#
+#
+#
+EVENT swSafeGuardChgToNormal .1.3.6.1.4.1.171.12.19.4.1.0.2 "Status Events" Normal
+FORMAT This trap indicates System change operation mode from exhausted to normal. $+*
+SDESC
+This trap indicates System change operation mode from exhausted to normal.
+Variables:
+  1: swSafeGuardCurrentStatus
+     Syntax="INTEGER"
+       1: normal
+       2: exhausted
+     Descr="This object indicates current operation mode of Safe Guard "
+EDESC
+#
+#
+#
+#
+MIB: PKT-STORM-CTRL-MIB (file:./PktStormCtrl.mib) converted on Sat Feb 23 20:31:38 2008 using snmpttconvertmib v1.2
+#
+#
+#
+EVENT swPktStormOccurred .1.3.6.1.4.1.171.12.25.5.0.1 "Status Events" Normal
+FORMAT The trap is sent when packet storm is detected by packet storm mechanism and take $+*
+SDESC
+The trap is sent when packet storm is detected by packet storm mechanism and take
+shutdown as action. 
+Variables:
+  1: swPktStormCtrlPortIndex
+     Syntax="INTEGER"
+     Descr="This object indicates the device's port number.(1..Max port
+        number in the device).Used to specify a range of ports to be 
+        configured."
+EDESC
+#
+#
+#
+EVENT swPktStormCleared .1.3.6.1.4.1.171.12.25.5.0.2 "Status Events" Normal
+FORMAT The trap is sent when the packet storm is cleared by packet storm mechanism.  $+*
+SDESC
+The trap is sent when the packet storm is cleared by packet storm mechanism. 
+Variables:
+  1: swPktStormCtrlPortIndex
+     Syntax="INTEGER"
+     Descr="This object indicates the device's port number.(1..Max port
+        number in the device).Used to specify a range of ports to be 
+        configured."
+EDESC
+#
+#
+#
+#
+MIB: SINGLE-IP-MIB (file:./SingleIP.mib) converted on Sat Feb 23 20:31:40 2008 using snmpttconvertmib v1.2
+#
+#
+#
+EVENT swSingleIPMSColdStart .1.3.6.1.4.1.171.12.8.6.0.11 "Status Events" Normal
+FORMAT Commander switch will send swSingleIPMSColdStart notification to indicated $+*
+SDESC
+Commander switch will send swSingleIPMSColdStart notification to indicated
+host when its Member generate cold start notification.
+Variables:
+  1: swSingleIPMSID
+     Syntax="INTEGER"
+     Descr="The ID of the member switch ."
+  2: swSingleIPMSMacAddr
+     Syntax="OCTETSTR"
+     Descr="This object Specifies the MAC address of the member switch."
+EDESC
+#
+#
+#
+EVENT swSingleIPMSWarmStart .1.3.6.1.4.1.171.12.8.6.0.12 "Status Events" Normal
+FORMAT Commander switch will send swSingleIPMSWarmStart notification to indicated $+*
+SDESC
+Commander switch will send swSingleIPMSWarmStart notification to indicated
+host when its Member generate warm start notification.
+Variables:
+  1: swSingleIPMSID
+     Syntax="INTEGER"
+     Descr="The ID of the member switch ."
+  2: swSingleIPMSMacAddr
+     Syntax="OCTETSTR"
+     Descr="This object Specifies the MAC address of the member switch."
+EDESC
+#
+#
+#
+EVENT swSingleIPMSLinkDown .1.3.6.1.4.1.171.12.8.6.0.13 "Status Events" Normal
+FORMAT Commander switch will send swSingleIPMSLinkDown notification to indicated $+*
+SDESC
+Commander switch will send swSingleIPMSLinkDown notification to indicated
+host when its Member generate link down notification.
+Variables:
+  1: swSingleIPMSID
+     Syntax="INTEGER"
+     Descr="The ID of the member switch ."
+  2: swSingleIPMSMacAddr
+     Syntax="OCTETSTR"
+     Descr="This object Specifies the MAC address of the member switch."
+  3: ifIndex
+     Syntax="INTEGER"
+     Descr="A unique value for each interface.  Its value
+            ranges between 1 and the value of ifNumber.  The
+            value for each interface must remain constant at
+            least from one re-initialization of the entity's
+            network management system to the next re-
+            initialization."
+EDESC
+#
+#
+#
+EVENT swSingleIPMSLinkUp .1.3.6.1.4.1.171.12.8.6.0.14 "Status Events" Normal
+FORMAT If Commander switch will send swSingleIPMSLinkUp notification to indicated $+*
+SDESC
+If Commander switch will send swSingleIPMSLinkUp notification to indicated
+host when its Member generate link up notification.
+Variables:
+  1: swSingleIPMSID
+     Syntax="INTEGER"
+     Descr="The ID of the member switch ."
+  2: swSingleIPMSMacAddr
+     Syntax="OCTETSTR"
+     Descr="This object Specifies the MAC address of the member switch."
+  3: ifIndex
+     Syntax="INTEGER"
+     Descr="A unique value for each interface.  Its value
+            ranges between 1 and the value of ifNumber.  The
+            value for each interface must remain constant at
+            least from one re-initialization of the entity's
+            network management system to the next re-
+            initialization."
+EDESC
+#
+#
+#
+EVENT swSingleIPMSAuthFail .1.3.6.1.4.1.171.12.8.6.0.15 "Status Events" Normal
+FORMAT Commander switch will send swSingleIPMSAuthFail notification to indicated  $+*
+SDESC
+Commander switch will send swSingleIPMSAuthFail notification to indicated 
+host when it Member generate authentation failure notification.
+Variables:
+  1: swSingleIPMSID
+     Syntax="INTEGER"
+     Descr="The ID of the member switch ."
+  2: swSingleIPMSMacAddr
+     Syntax="OCTETSTR"
+     Descr="This object Specifies the MAC address of the member switch."
+EDESC
+#
+#
+#
+EVENT swSingleIPMSnewRoot .1.3.6.1.4.1.171.12.8.6.0.16 "Status Events" Normal
+FORMAT Commander switch will send swSingleIPMSnewRoot notification to indicated  $+*
+SDESC
+Commander switch will send swSingleIPMSnewRoot notification to indicated 
+host when it Member generate new root notification.
+Variables:
+  1: swSingleIPMSID
+     Syntax="INTEGER"
+     Descr="The ID of the member switch ."
+  2: swSingleIPMSMacAddr
+     Syntax="OCTETSTR"
+     Descr="This object Specifies the MAC address of the member switch."
+EDESC
+#
+#
+#
+EVENT swSingleIPMSTopologyChange .1.3.6.1.4.1.171.12.8.6.0.17 "Status Events" Normal
+FORMAT Commander switch will send swSingleIPMSTopologyChange notification to  $+*
+SDESC
+Commander switch will send swSingleIPMSTopologyChange notification to 
+indicated host when it Member generate topology chnage notification.
+Variables:
+  1: swSingleIPMSID
+     Syntax="INTEGER"
+     Descr="The ID of the member switch ."
+  2: swSingleIPMSMacAddr
+     Syntax="OCTETSTR"
+     Descr="This object Specifies the MAC address of the member switch."
+EDESC
+#
+#
+#
+EVENT swSingleIPMSrisingAlarm .1.3.6.1.4.1.171.12.8.6.0.18 "Status Events" Normal
+FORMAT Commander switch will send swSingleIPMSrisingAlarm notification to  $+*
+SDESC
+Commander switch will send swSingleIPMSrisingAlarm notification to 
+indicated host when it Member generate rising Alarm notification.
+Variables:
+  1: swSingleIPMSID
+     Syntax="INTEGER"
+     Descr="The ID of the member switch ."
+  2: swSingleIPMSMacAddr
+     Syntax="OCTETSTR"
+     Descr="This object Specifies the MAC address of the member switch."
+EDESC
+#
+#
+#
+EVENT swSingleIPMSfallingAlarm .1.3.6.1.4.1.171.12.8.6.0.19 "Status Events" Normal
+FORMAT Commander switch will send swSingleIPMSfallingAlarm notification to $+*
+SDESC
+Commander switch will send swSingleIPMSfallingAlarm notification to
+indicated host when it Member generate falling Alarm notification.
+Variables:
+  1: swSingleIPMSID
+     Syntax="INTEGER"
+     Descr="The ID of the member switch ."
+  2: swSingleIPMSMacAddr
+     Syntax="OCTETSTR"
+     Descr="This object Specifies the MAC address of the member switch."
+EDESC
+#
+#
+#
+EVENT swSingleIPMSmacNotification .1.3.6.1.4.1.171.12.8.6.0.20 "Status Events" Normal
+FORMAT Commander switch will send swSingleIPMSmacNotification notification to  $+*
+SDESC
+Commander switch will send swSingleIPMSmacNotification notification to 
+indicated host when it Member generate mac addresses variation notification.
+Variables:
+  1: swSingleIPMSID
+     Syntax="INTEGER"
+     Descr="The ID of the member switch ."
+  2: swSingleIPMSMacAddr
+     Syntax="OCTETSTR"
+     Descr="This object Specifies the MAC address of the member switch."
+  3: swSingleIPMSTrapMessage
+     Syntax="OCTETSTR"
+     Descr="The string that member switch sent."
+EDESC
+#
+#
+#
+EVENT swSingleIPMSPortTypeChange .1.3.6.1.4.1.171.12.8.6.0.21 "Status Events" Normal
+FORMAT Commander switch will send swSingleIPMSPortTypeChange notification to  $+*
+SDESC
+Commander switch will send swSingleIPMSPortTypeChange notification to 
+indicated host when it Member generate port type change notification.
+Variables:
+  1: swSingleIPMSID
+     Syntax="INTEGER"
+     Descr="The ID of the member switch ."
+  2: swSingleIPMSMacAddr
+     Syntax="OCTETSTR"
+     Descr="This object Specifies the MAC address of the member switch."
+  3: ifIndex
+     Syntax="INTEGER"
+     Descr="A unique value for each interface.  Its value
+            ranges between 1 and the value of ifNumber.  The
+            value for each interface must remain constant at
+            least from one re-initialization of the entity's
+            network management system to the next re-
+            initialization."
+  4: swSingleIPMSTrapMessage
+     Syntax="OCTETSTR"
+     Descr="The string that member switch sent."
+EDESC
+#
+#
+#
+EVENT swSingleIPMSPowerStatusChg .1.3.6.1.4.1.171.12.8.6.0.22 "Status Events" Normal
+FORMAT $+*
+SDESC
+
+Commander switch will send swSingleIPMSPowerStatusChg notification to 
+indicated host when it Member generate Power Status change notification.
+Variables:
+  1: swSingleIPMSID
+     Syntax="INTEGER"
+     Descr="The ID of the member switch ."
+  2: swSingleIPMSMacAddr
+     Syntax="OCTETSTR"
+     Descr="This object Specifies the MAC address of the member switch."
+  3: swSingleIPMSTrapMessage
+     Syntax="OCTETSTR"
+     Descr="The string that member switch sent."
+EDESC
+#
+#
+#
+EVENT swSingleIPMSPowerFailure .1.3.6.1.4.1.171.12.8.6.0.23 "Status Events" Normal
+FORMAT $+*
+SDESC
+
+Commander switch will send swSingleIPMSPowerFailure notification to indicated
+host when it Member generate Power Failure notification.
+Variables:
+  1: swSingleIPMSID
+     Syntax="INTEGER"
+     Descr="The ID of the member switch ."
+  2: swSingleIPMSMacAddr
+     Syntax="OCTETSTR"
+     Descr="This object Specifies the MAC address of the member switch."
+  3: swSingleIPMSTrapMessage
+     Syntax="OCTETSTR"
+     Descr="The string that member switch sent."
+EDESC
+#
+#
+#
+EVENT swSingleIPMSPowerRecover .1.3.6.1.4.1.171.12.8.6.0.24 "Status Events" Normal
+FORMAT $+*
+SDESC
+
+Commander switch will send swSingleIPMSPowerRecover notification to indicated 
+host when it Member generate Power Recover notification.
+Variables:
+  1: swSingleIPMSID
+     Syntax="INTEGER"
+     Descr="The ID of the member switch ."
+  2: swSingleIPMSMacAddr
+     Syntax="OCTETSTR"
+     Descr="This object Specifies the MAC address of the member switch."
+  3: swSingleIPMSTrapMessage
+     Syntax="OCTETSTR"
+     Descr="The string that member switch sent."
+EDESC
+#
+#
+#
+#
+MIB: SNMPv2-MIB (file:./rfc1907.mib) converted on Sat Feb 23 20:31:39 2008 using snmpttconvertmib v1.2
+#
+#
+#
+EVENT coldStart .1.3.6.1.6.3.1.1.5.1 "Status Events" Normal
+FORMAT A coldStart trap signifies that the SNMPv2 entity, acting $+*
+SDESC
+A coldStart trap signifies that the SNMPv2 entity, acting
+in an agent role, is reinitializing itself and that its
+configuration may have been altered.
+EDESC
+#
+#
+#
+EVENT warmStart .1.3.6.1.6.3.1.1.5.2 "Status Events" Normal
+FORMAT A warmStart trap signifies that the SNMPv2 entity, acting $+*
+SDESC
+A warmStart trap signifies that the SNMPv2 entity, acting
+in an agent role, is reinitializing itself such that its
+configuration is unaltered.
+EDESC
+#
+#
+#
+EVENT authenticationFailure .1.3.6.1.6.3.1.1.5.5 "Status Events" Normal
+FORMAT An authenticationFailure trap signifies that the SNMPv2 $+*
+SDESC
+An authenticationFailure trap signifies that the SNMPv2
+entity, acting in an agent role, has received a protocol
+message that is not properly authenticated.  While all
+implementations of the SNMPv2 must be capable of generating
+this trap, the snmpEnableAuthenTraps object indicates
+whether this trap will be generated.
+EDESC
+#
+#
+#
+#
+MIB: IF-MIB (file:./rfc2233.mib) converted on Sat Feb 23 20:31:39 2008 using snmpttconvertmib v1.2
+#
+#
+#
+EVENT linkDown .1.3.6.1.6.3.1.1.5.3 "Status Events" Normal
+FORMAT FORM: A linkDown trap signifies that the SNMPv2 entity, $+*
+REGEX ((.*)\ +if[A-Za-z]{5,}(.[0-9]{1,2})?\:\ ?([0-9]{1,2})\ +if[A-Za-z]{5,}(.[0-9]{1,2})?\:\ ?([A-Za-z]{2,15})\ +if[A-Za-z]{5,}(.[0-9]{1,2})?\:\ ?([A-Za-z]{2,15}))("FORM: A linkDown trap signifies that the [port=$3 AdminStatus=$5 OperStatus=$7]")ige
+REGEX ((link[A-Za-z]{2,15})\ +[A-Za-z0-9\ \,]*if[A-Za-z]{5,}(.[0-9]{1,2})?\:\ ?([0-9]{1,2})\ +des-21[0-9.]{3,10}\ ?\:\ ?([A-Za-z0-9\ ]*)link\ ?([A-Za-z]{2,15}))("FORM: A $1 trap signifies that the [port=$3 AdminStatus= OperStatus=$5]")ige
+SDESC
+A linkDown trap signifies that the SNMPv2 entity,
+acting in an agent role, has detected that the
+ifOperStatus object for one of its communication links
+is about to enter the down state from some other state
+(but not from the notPresent state).  This other state
+is indicated by the included value of ifOperStatus.
+Variables:
+  1: ifIndex
+     Syntax="INTEGER32"
+     Descr="A unique value, greater than zero, for each
+               interface.  It is recommended that values are assigned
+               contiguously starting from 1.  The value for each
+               interface sub-layer must remain constant at least from
+               one re-initialization of the entity's network
+               management system to the next re-initialization."
+  2: ifAdminStatus
+     Syntax="INTEGER"
+       1: up
+       2: down
+       3: testing
+     Descr="The desired state of the interface.  The testing(3)
+               state indicates that no operational packets can be
+               passed.  When a managed system initializes, all
+               interfaces start with ifAdminStatus in the down(2)
+               state.  As a result of either explicit management
+               action or per configuration information retained by
+               the managed system, ifAdminStatus is then changed to
+               either the up(1) or testing(3) states (or remains in
+               the down(2) state)."
+  3: ifOperStatus
+     Syntax="INTEGER"
+       1: up
+       2: down
+       3: testing
+       4: unknown
+       5: dormant
+       6: notPresent
+       7: lowerLayerDown
+     Descr="The current operational state of the interface.  The
+               testing(3) state indicates that no operational packets
+               can be passed.  If ifAdminStatus is down(2) then
+               ifOperStatus should be down(2).  If ifAdminStatus is
+               changed to up(1) then ifOperStatus should change to
+               up(1) if the interface is ready to transmit and
+               receive network traffic; it should change to
+               dormant(5) if the interface is waiting for external
+               actions (such as a serial line waiting for an incoming
+               connection); it should remain in the down(2) state if
+               and only if there is a fault that prevents it from
+               going to the up(1) state; it should remain in the
+               notPresent(6) state if the interface has missing
+               (typically, hardware) components."
+EDESC
+#
+#
+#
+EVENT linkUp .1.3.6.1.6.3.1.1.5.4 "Status Events" Normal
+FORMAT FORM: A linkUp trap signifies that the SNMPv2 entity, $+*
+REGEX ((.*)\ +if[A-Za-z]{5,}(.[0-9]{1,2})?\:\ ?([0-9]{1,2})\ +if[A-Za-z]{5,}(.[0-9]{1,2})?\:\ ?([A-Za-z]{2,15})\ +if[A-Za-z]{5,}(.[0-9]{1,2})?\:\ ?([A-Za-z]{2,15}))("FORM: A linkUp trap signifies that the [port=$3 AdminStatus=$5 OperStatus=$7]")ige
+REGEX ((link[A-Za-z]{2,15})\ +[A-Za-z0-9\ \,]*if[A-Za-z]{5,}(.[0-9]{1,2})?\:\ ?([0-9]{1,2})\ +des-21[0-9.]{3,10}\ ?\:\ ?([A-Za-z0-9\ ]*)link\ ?([A-Za-z]{2,15}))("FORM: A $1 trap signifies that the [port=$3 AdminStatus= OperStatus=$5]")ige
+SDESC
+A linkDown trap signifies that the SNMPv2 entity,
+acting in an agent role, has detected that the
+ifOperStatus object for one of its communication links
+left the down state and transitioned into some other
+state (but not into the notPresent state).  This other
+state is indicated by the included value of
+ifOperStatus.
+Variables:
+  1: ifIndex
+     Syntax="INTEGER32"
+     Descr="A unique value, greater than zero, for each
+               interface.  It is recommended that values are assigned
+               contiguously starting from 1.  The value for each
+               interface sub-layer must remain constant at least from
+               one re-initialization of the entity's network
+               management system to the next re-initialization."
+  2: ifAdminStatus
+     Syntax="INTEGER"
+       1: up
+       2: down
+       3: testing
+     Descr="The desired state of the interface.  The testing(3)
+               state indicates that no operational packets can be
+               passed.  When a managed system initializes, all
+               interfaces start with ifAdminStatus in the down(2)
+               state.  As a result of either explicit management
+               action or per configuration information retained by
+               the managed system, ifAdminStatus is then changed to
+               either the up(1) or testing(3) states (or remains in
+               the down(2) state)."
+  3: ifOperStatus
+     Syntax="INTEGER"
+       1: up
+       2: down
+       3: testing
+       4: unknown
+       5: dormant
+       6: notPresent
+       7: lowerLayerDown
+     Descr="The current operational state of the interface.  The
+               testing(3) state indicates that no operational packets
+               can be passed.  If ifAdminStatus is down(2) then
+               ifOperStatus should be down(2).  If ifAdminStatus is
+               changed to up(1) then ifOperStatus should change to
+               up(1) if the interface is ready to transmit and
+               receive network traffic; it should change to
+               dormant(5) if the interface is waiting for external
+               actions (such as a serial line waiting for an incoming
+               connection); it should remain in the down(2) state if
+               and only if there is a fault that prevents it from
+               going to the up(1) state; it should remain in the
+               notPresent(6) state if the interface has missing
+               (typically, hardware) components."
+EDESC
+#
+#
+#
+#
