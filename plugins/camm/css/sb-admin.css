@@ -232,3 +232,7 @@ ul.alert-dropdown {
     top:0px;
     z-index: 9999;
 }
+
+#syslog-table, #snmp-table, #snmp-unk-table {
+    width: 100% !important;
+}
