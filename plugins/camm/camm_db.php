@@ -577,6 +577,7 @@ function camm_get_syslog_records() {
 
 
             $query_string .= " LIMIT " . $row_start . "," . $row_limit;
+//            $query_string .= " LIMIT 1000";
 
             //group by id because cacti hosts table may have more than one device with one hostname
             $query_string .= ") as temp_sys Left join host on (temp_sys." . $join_field . "=host.hostname) group by id";

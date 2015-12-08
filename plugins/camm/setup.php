@@ -70,13 +70,13 @@
  	if (isset($user_auth_realm_filenames{basename('camm_view.php')})) {
  		$realm_id2 = $user_auth_realm_filenames{basename('camm_view.php')};
  	}
- 	
+    
  	if ((db_fetch_assoc("select user_auth_realm.realm_id
  		from user_auth_realm where user_auth_realm.user_id='" . $_SESSION["sess_user_id"]
  		. "'and user_auth_realm.realm_id='$realm_id2'")) || (empty($realm_id2))) {
- 		print '<a href="' . $config['url_path'] . 'plugins/camm/camm_view.php"><img src="' . $config['url_path'] . 'plugins/camm/images/tab_camm';
+ 		print '<a href="' . $config['url_path'] . 'plugins/camm/iper_index.php"><img src="' . $config['url_path'] . 'plugins/camm/images/tab_camm';
  		// Red tab code
- 		if(preg_match('/plugins\/camm\/camm_view.php/',$_SERVER['REQUEST_URI'] ,$matches) || preg_match('/plugins\/camm\/camm_alert.php/',$_SERVER['REQUEST_URI'] ,$matches))
+ 		if(preg_match('/plugins\/camm\/iper_index.php/',$_SERVER['REQUEST_URI'] ,$matches) || preg_match('/plugins\/camm\/iper_index.php/',$_SERVER['REQUEST_URI'] ,$matches))
  		{
  			print "_red";
  		}
@@ -85,7 +85,7 @@
  			print "_small";
  		}
  
- 		print '.gif" alt="camm" align="absmiddle" border="0"></a>';
+ 		print '.jpg" alt="camm" align="absmiddle" border="0"></a>';
  	}
  	camm_check_upgrade ();	
  }
@@ -101,8 +101,9 @@
  	{
  		$out .= " - CAMM (CActi Message Managment)";
  	}
- 		
- 	return ($out);	
+
+    return 'IPer Plugin';
+// 	return ($out);	
  }
  
  function plugin_camm_uninstall () {
