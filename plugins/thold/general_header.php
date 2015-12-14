@@ -113,5 +113,5 @@ $page_title = api_plugin_hook_function('page_title', 'Cacti');
 	</tr>
 <?php } ?>
 	<tr>
-		<td valign="top" style="padding: 5px; border-right: #aaaaaa 1px solid;"><div style='position:relative;' id='main'>
+		<td valign="top" class="thold-detail-content" style="padding: 5px; border-right: #aaaaaa 1px solid;"><div style='position:relative;' id='main'>
 <?php } ?>

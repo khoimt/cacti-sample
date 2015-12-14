@@ -240,3 +240,7 @@ ul.alert-dropdown {
 td.monitor-detail-content {
     border-right: transparent !important;
 }
+
+td.thold-detail-content {
+    border-right: transparent !important;
+}

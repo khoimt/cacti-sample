@@ -27,6 +27,23 @@ iperControllers.controller('MonitorCtrl', ['$scope', '$http', 'jQuery',
         })
     }]);
 
+iperControllers.controller('TholdCtrl', ['$scope', '$http', 'jQuery',
+    function ($scope, $http, $) {
+        $('ul.nav li').removeClass('active');
+        $('ul.nav .li-thold').addClass('active');
+
+        $.ajax({
+            url: "../thold/thold_graph.php",
+            type: 'html',
+            success: function (html) {
+                $('.thold-detail-content', $(html)).appendTo('.thold-content');
+            },
+            error: function () {
+                alert('Có lỗi xảy ra, vui lòng thử lại');
+            }
+        })
+    }]);
+
 iperControllers.controller('SyslogCtrl', ['$scope', '$http', 'jQuery',
     function ($scope, $http, $) {
         $('ul.nav li').removeClass('active');

@@ -45,6 +45,6 @@ iperApp.config(['$routeProvider',
                     controller: 'SnmpttUnkCtrl'
                 }).
                 otherwise({
-                    redirectTo: '/syslog'
+                    redirectTo: '/monitor'
                 });
     }]);
