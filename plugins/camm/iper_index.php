@@ -45,7 +45,8 @@ if (read_config_option("auth_method") != 0) {
 $page_title = api_plugin_hook_function('page_title', 'Cacti');
 ?>
 
-<html>
+<!doctype html>
+<html ng-app="iperApp">
     <head>
 
 
@@ -67,13 +68,12 @@ $page_title = api_plugin_hook_function('page_title', 'Cacti');
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
-        <meta name="author" content="">
+        <meta name="iper" content="">
 
         <!-- Ext CSS and Libs -->
-        <link rel="stylesheet" type="text/css"	href="<?php echo $config['url_path']; ?>plugins/camm/css/ext-all.css" >
-        <link rel="stylesheet" type="text/css"	href="<?php echo $config['url_path']; ?>plugins/camm/css/xtheme-default.css">
-        <link rel="stylesheet" type="text/css"	href="<?php echo $config['url_path']; ?>plugins/camm/css/main.css" >
-        <link href="/include/css/jquery.dataTables.min.css" type="text/css" rel="stylesheet">
+        <!--<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">-->
+        <link href="bower_components/angular/angular-csp.css">
+        <link href="bower_components/datatables/media/css/jquery.dataTables.css" type="text/css" rel="stylesheet">
         <!-- Bootstrap Core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -86,6 +86,14 @@ $page_title = api_plugin_hook_function('page_title', 'Cacti');
         <!-- Custom Fonts -->
         <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-datatables/dist/angular-datatables.min.js"></script>
+        <script src="bower_components/angular-route/angular-route.min.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/controllers.js"></script>
+
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -95,7 +103,7 @@ $page_title = api_plugin_hook_function('page_title', 'Cacti');
 
     </head>
 
-    <?php if ($oper_mode == OPER_MODE_NATIVE) { ?>
+        <?php if ($oper_mode == OPER_MODE_NATIVE) { ?>
         <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" <?php print api_plugin_hook_function("body_style", ""); ?>>
         <?php } else { ?>
         <body leftmargin="15" topmargin="15" marginwidth="15" marginheight="15" <?php print api_plugin_hook_function("body_style", ""); ?>>
@@ -150,8 +158,6 @@ $page_title = api_plugin_hook_function('page_title', 'Cacti');
             </table>
         </div>
 
-        <!-- body -->
-
         <div id="wrapper">
 
             <!-- Navigation -->
@@ -160,17 +166,20 @@ $page_title = api_plugin_hook_function('page_title', 'Cacti');
                 <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav">
-                        <li class="active">
-                            <a href="iper_index.php#syslog"><i class="fa fa-fw fa-dashboard"></i> Syslog</a>
+                        <li class="li-monitor">
+                            <a href="iper_index.php#monitor"><i class="fa fa-fw fa-desktop"></i> Monitor</a>
                         </li>
-                        <li>
-                            <a href="iper_index.php#snmptt"><i class="fa fa-fw fa-bar-chart-o"></i> SNMP Trap Log</a>
+                        <li class="li-syslog active">
+                            <a href="iper_index.php#syslog"><i class="fa fa-fw fa-table"></i> Syslog</a>
                         </li>
-                        <li>
-                            <a href="iper_index.php#snmptt_unk"><i class="fa fa-fw fa-table"></i> SNMP Trap Unknown Log</a>
+                        <li class="li-snmptt">
+                            <a href="iper_index.php#snmptt"><i class="fa fa-fw fa-table"></i> SNMP Trap Log</a>
                         </li>
-                        <li>
-                            <a href="iper_index.php"><i class="fa fa-fw fa-edit"></i> Settings</a>
+                        <li class="li-snmpttunk">
+                            <a href="iper_index.php#snmpttunk"><i class="fa fa-fw fa-table"></i> SNMP Trap Unknown Log</a>
+                        </li>
+                        <li class="li-thold">
+                            <a href="iper_index.php#thold"><i class="fa fa-fw fa-bullhorn"></i> THold</a>
                         </li>
                     </ul>
                 </div>
@@ -179,101 +188,14 @@ $page_title = api_plugin_hook_function('page_title', 'Cacti');
 
             <div id="page-wrapper">
 
-                <div class="container-fluid">
-
-                    <!-- Page Heading -->
-                    <a name="syslog"></a>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h1 class="page-header">
-                                Syslog
-                            </h1>
-                        </div>
-                    </div>
-                    <div class="">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Log Hệ Thống</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div class="table-responsive">
-                                    <table id="syslog-table" class="table table-bordered table-hover table-striped">
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Page Heading -->
-                    <a name="snmptt"></a>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h1 class="page-header">
-                                SNMP Trap Log
-                            </h1>
-                        </div>
-                    </div>
-
-                    <div class="">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Log SNMP Trap</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div class="table-responsive">
-                                    <table id="snmp-table" class="table table-bordered table-hover table-striped">
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Page Heading -->
-                    <a name="snmptt_unk"></a>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h1 class="page-header">
-                            </h1>
-                        </div>
-                    </div>
-
-                    <div class="">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Log SNMP Không Xác Định</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div class="table-responsive">
-                                    <table id="snmp-unk-table" class="table table-bordered table-hover table-striped">
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- /.row -->
+                <div class="container-fluid" ng-view="">
                 </div>
                 <!-- /.container-fluid -->
 
             </div>
             <!-- /#page-wrapper -->
-
         </div>
-        <!-- /#wrapper -->
-
-
-        <!-- jQuery -->
-        <script src="js/jquery.js"></script>
-        <script type="text/javascript" src="/include/js/jquery.dataTables.min.js"></script>
-
-        <!-- Bootstrap Core JavaScript -->
-        <script src="js/bootstrap.min.js"></script>
-
-        <!-- Morris Charts JavaScript -->
-        <script src="js/iper.syslog.js"></script>
-        <script src="js/iper.snmp.js"></script>
-        <script src="js/iper.snmpunk.js"></script>
-
+        <!-- body -->
     </body>
 </html>
 

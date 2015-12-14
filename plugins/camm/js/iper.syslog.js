@@ -2,6 +2,12 @@
     function loadSyslogs(data) {
         var url = 'camm_db.php';
         $('#syslog-table').DataTable({
+            'processing': true,
+            'serverSide': true,
+            'autoWidth': true,
+            'order': [
+                [0, 'desc']
+            ],
             'ajax': {
                 'url': url,
                 'type': 'POST',
@@ -23,7 +29,6 @@
 
     $(function () {
         var data = {
-            start: 0,
             limit: 1000,
             filter: null,
             task: 'camm_get_syslog_records',

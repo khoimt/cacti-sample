@@ -516,7 +516,6 @@ function camm_get_syslog_records() {
     /* ================= input validation ================= */
 
     camm_input_validate_input_regex(get_request_var_request("start", "0"), "^[0-9]{0,10}$", 'Uncorrect input data');
-    camm_input_validate_input_regex(get_request_var_request("limit", "50"), "^[0-9]{1,4}$", 'Uncorrect input data');
     camm_input_validate_input_regex(get_request_var_request("tree_id"), "^((typ|evn|host)-[0-9]{0,4})|root$", 'Uncorrect input data [tree_id]');
 
     /* ==================================================== */
@@ -530,9 +529,12 @@ function camm_get_syslog_records() {
     if ($rezult == 1) {
         if ($cacti_camm_components["syslog"]) {
             $row_start = (integer) (isset($_POST['start']) ? $_POST['start'] : $_POST['start']);
-            $row_limit = (integer) (isset($_POST['limit']) ? $_POST['limit'] : $_POST['limit']);
+            $row_limit = (integer) (array_key_exists('length', $_POST)
+                    ? $_POST['length']
+                    : $_POST['limit']);
             $tree_id = (string) (isset($_POST['tree_id']) ? $_POST['tree_id'] : $_POST['tree_id']);
             $raw_json_where = (string) (isset($_POST['filter']) ? $_POST['filter'] : $_POST['filter']);
+            $draw = array_key_exists('draw', $_POST) ? $_POST['draw'] : -1;
 
             $query_string = "";
             $sql_where = getSQL(camm_JDecode(stripslashes($raw_json_where)));
@@ -573,7 +575,7 @@ function camm_get_syslog_records() {
             }
 
             $query_string = " SELECT temp_sys.*, host.description, host.host_template_id, host.id as device_id " .
-                    "from (SELECT id, `facility`, `priority`, `sys_date`, `host`, `message`,`sourceip` FROM `" . read_config_option("camm_syslog_db_name") . "`.`plugin_camm_syslog` WHERE $sql_where $tree_sql order by sys_date desc ";
+                    "from (SELECT id, `facility`, `priority`, `sys_date`, `host`, `message`,`sourceip` FROM `" . read_config_option("camm_syslog_db_name") . "`.`plugin_camm_syslog` WHERE $sql_where $tree_sql order by `id` desc ";
 
 
             $query_string .= " LIMIT " . $row_start . "," . $row_limit;
@@ -583,6 +585,8 @@ function camm_get_syslog_records() {
             $query_string .= ") as temp_sys Left join host on (temp_sys." . $join_field . "=host.hostname) group by id";
 
             $total_rows = db_fetch_cell("SELECT count(*) FROM `" . read_config_option("camm_syslog_db_name") . "`.`plugin_camm_syslog` WHERE " . $sql_where . " " . $tree_sql . " ;");
+
+            $query_string .= ' ORDER BY `id` DESC';
         } else {
             $rezult = " SYSLOG component disabled.";
         }
@@ -592,10 +596,20 @@ function camm_get_syslog_records() {
     if ($rezult == 1) {
         if ($total_rows > 0) {
             $rows = db_fetch_assoc($query_string);
-            echo camm_JEncode(array('success' => true, 'total' => $total_rows, "results" => $rows));
+            $responseData = array('success' => true,
+                'total' => $total_rows,
+                'recordsTotal' => $total_rows,
+                'recordsFiltered' => $total_rows,
+                "results" => $rows);
         } else {
-            echo camm_JEncode(array('success' => true, 'total' => "0", "results" => ""));
+            $responseData = array('success' => true,
+                'total' => "0",
+                'recordsTotal' => 0,
+                "results" => ""
+            );
         }
+        if ($draw >= 0) $responseData['draw'] = $draw;
+        echo camm_JEncode($responseData);
     } else {
         echo camm_JEncode(array('failure' => true, 'error' => $rezult));
     }
