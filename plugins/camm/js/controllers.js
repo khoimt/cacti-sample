@@ -14,31 +14,32 @@ var iperControllers = angular.module('iperControllers', []);
 
 function loadMonitor(url) {
     $.ajax({
-            url: url,
-            type: 'html',
-            success: function (html) {
-                $('.monitor-content').html('');
-                $('.monitor-detail-content', $(html)).appendTo('.monitor-content');
-            },
-            error: function () {
-                alert('Có lỗi xảy ra, vui lòng thử lại');
-            }
-        })
+        url: url,
+        type: 'html',
+        success: function (html) {
+            $('.monitor-content').html('');
+            $('.monitor-detail-content', $(html)).appendTo('.monitor-content');
+        },
+        error: function () {
+            alert('Có lỗi xảy ra, vui lòng thử lại');
+        }
+    })
 }
 
-iperControllers.controller('MonitorCtrl', ['$scope', '$http', 'jQuery', '$interval',
-    function ($scope, $http, $, $interval) {
+iperControllers.controller('MonitorCtrl', ['$scope', '$rootScope', '$http', 'jQuery', '$interval',
+    function ($scope, $rootScope, $http, $, $interval) {
         $('ul.nav li').removeClass('active');
         $('ul.nav .li-monitor').addClass('active');
 
         loadMonitor("../monitor/monitor.php");
-//        var $stopTime = $interval(function() {
-//            loadMonitor("../monitor/monitor.php");
-//        }, 3000);
-//
-//        $scope.on('$destroy', function() {
-//            $interval.cancel($stopTime);
-//        })
+        var $stopTime = $interval(function () {
+            loadMonitor("../monitor/monitor.php");
+        }, 3000);
+
+        $rootScope.$on('$locationChangeSuccess', function () {
+            $interval.cancel($stopTime);
+        });
+
     }]);
 
 /*************************************************/
@@ -69,8 +70,8 @@ function loadThold(url) {
                 return false;
             });
 
-            $('input[type=submit]', '.thold-content form').each(function() {
-                $(this).unbind('click').click(function(event) {
+            $('input[type=submit]', '.thold-content form').each(function () {
+                $(this).unbind('click').click(function (event) {
                     event.preventDefault();
                     var form = $(this).closest('form');
                     var url = getURLForm(form, $(this).val() == 'Go');
@@ -82,11 +83,11 @@ function loadThold(url) {
             $('select', '.thold-content form').removeAttr('onChange');
             $('select', '.thold-content form').unbind('change');
 
-            $('select', '.thold-content form').change(function() {
-                    var form = $(this).closest('form');
-                    var url = getURLForm(form, true);
-                    loadThold(url);
-                    return false;
+            $('select', '.thold-content form').change(function () {
+                var form = $(this).closest('form');
+                var url = getURLForm(form, true);
+                loadThold(url);
+                return false;
             });
         },
         error: function () {
