@@ -2849,6 +2849,45 @@ function thold_mail($to, $from, $subject, $message, $filename, $headers = '') {
 }
 
 function thold_template_update_threshold ($id, $template) {
+    echo "UPDATE thold_data, thold_template
+		SET
+		thold_data.template_enabled = 'on',
+		thold_data.thold_hi = thold_template.thold_hi,
+		thold_data.thold_low = thold_template.thold_low,
+		thold_data.thold_fail_trigger = thold_template.thold_fail_trigger,
+		thold_data.time_hi = thold_template.time_hi,
+		thold_data.time_low = thold_template.time_low,
+		thold_data.time_fail_trigger = thold_template.time_fail_trigger,
+		thold_data.time_fail_length = thold_template.time_fail_length,
+		thold_data.thold_warning_hi = thold_template.thold_warning_hi,
+		thold_data.thold_warning_low = thold_template.thold_warning_low,
+		thold_data.thold_warning_fail_trigger = thold_template.thold_warning_fail_trigger,
+		thold_data.time_warning_hi = thold_template.time_warning_hi,
+		thold_data.time_warning_low = thold_template.time_warning_low,
+		thold_data.time_warning_fail_trigger = thold_template.time_warning_fail_trigger,
+		thold_data.time_warning_fail_length = thold_template.time_warning_fail_length,
+		thold_data.thold_enabled = thold_template.thold_enabled,
+		thold_data.thold_type = thold_template.thold_type,
+		thold_data.bl_ref_time_range = thold_template.bl_ref_time_range,
+		thold_data.bl_pct_down = thold_template.bl_pct_down,
+		thold_data.bl_pct_up = thold_template.bl_pct_up,
+		thold_data.bl_fail_trigger = thold_template.bl_fail_trigger,
+		thold_data.bl_alert = thold_template.bl_alert,
+		thold_data.bl_thold_valid = 0,
+		thold_data.repeat_alert = thold_template.repeat_alert,
+		thold_data.notify_extra = thold_template.notify_extra,
+		thold_data.notify_warning_extra = thold_template.notify_warning_extra,
+		thold_data.notify_warning = thold_template.notify_warning,
+		thold_data.notify_alert = thold_template.notify_alert,
+		thold_data.data_type = thold_template.data_type,
+		thold_data.cdef = thold_template.cdef,
+		thold_data.percent_ds = thold_template.percent_ds,
+		thold_data.expression = thold_template.expression,
+		thold_data.exempt = thold_template.exempt,
+		thold_data.data_template = thold_template.data_template_id,
+		thold_data.restored_alert = thold_template.restored_alert
+		WHERE thold_data.id=$id AND thold_template.id=$template";
+
 	db_execute("UPDATE thold_data, thold_template
 		SET
 		thold_data.template_enabled = 'on',
