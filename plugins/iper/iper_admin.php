@@ -20,8 +20,8 @@ chdir('../../');
 include("./include/auth.php");
 
 
-include_once($config["base_path"] . "/plugins/camm/lib/camm_functions.php");
-include_once($config["base_path"] . "/plugins/camm/lib/json_sql.php");
+include_once($config["base_path"] . "/plugins/iper/lib/iper_functions.php");
+include_once($config["base_path"] . "/plugins/iper/lib/json_sql.php");
 
 //***********************************************************
 

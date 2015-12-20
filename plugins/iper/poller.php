@@ -40,9 +40,9 @@
  
  /* Start Initialization Section */
  include("./include/global.php"); 
- include_once($config["base_path"] . "/plugins/camm/lib/camm_functions.php");
- include_once($config["base_path"] . "/plugins/camm/lib/json_sql.php");
- include_once($config["base_path"] . "/plugins/camm/lib/camm_user_func.php");  
+ include_once($config["base_path"] . "/plugins/iper/lib/iper_functions.php");
+ include_once($config["base_path"] . "/plugins/iper/lib/json_sql.php");
+ include_once($config["base_path"] . "/plugins/iper/lib/iper_user_func.php");  
  
  //$Regtt = new RegEx;
  // $trez = $Regtt->isValid("/\\[FORM12\\]\\+/");
