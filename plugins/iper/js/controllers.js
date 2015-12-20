@@ -1,6 +1,6 @@
 
 /* Controllers */
-var url = 'camm_db.php';
+var url = 'iper_ajax.php';
 var data = {
     start: 0,
     limit: 1000,
