@@ -1,0 +1,466 @@
+#
+#
+#
+#
+MIB: AAC-MIB (file:./AAC.mib) converted on Sat Feb 23 20:22:22 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: ACLMGMT-MIB (file:./ACLmgmt.mib) converted on Sat Feb 23 20:22:22 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: DLINK-ID-REC-MIB (file:./DLINK-ID-REC-MIB.mib) converted on Sat Feb 23 20:22:22 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: DLINK-AGENT-MIB (file:./dlkAgent.mib) converted on Sat Feb 23 20:22:22 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: DLINK-AUTH-MIB (file:./dlkAuth.mib) converted on Sat Feb 23 20:22:22 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: MSTP-MIB (file:./dlkMSTP.mib) converted on Sat Feb 23 20:22:22 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: DLINK-TIME-MIB (file:./dlkTime.mib) converted on Sat Feb 23 20:22:22 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: Dot1xMGMT-MIB (file:./dot1xmgmt.mib) converted on Sat Feb 23 20:22:23 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: FILTER-MIB (file:./Filter.mib) converted on Sat Feb 23 20:22:23 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: IANAifType-MIB (file:./IANAifType-MIB.mib) converted on Sat Feb 23 20:22:23 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: IANA-RTPROTO-MIB (file:./IANA-RTPROTO-MIB.mib) converted on Sat Feb 23 20:22:23 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: IEEE8021-PAE-MIB (file:./ie8021x.mib) converted on Sat Feb 23 20:22:23 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: INET-ADDRESS-MIB (file:./INET-ADDRESS-MIB.mib) converted on Sat Feb 23 20:22:23 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: DES3526-L2MGMT-MIB (file:./L2mgmtDES3526.mib) converted on Sat Feb 23 20:22:23 2008 using snmpttconvertmib v1.2
+#
+#
+#
+EVENT swL2macNotification .1.3.6.1.4.1.171.11.64.1.2.15.0.3 "Status Events" Normal
+FORMAT  This trap indicate the mac addresses variation in address table .  $+*
+SDESC
+ This trap indicate the mac addresses variation in address table . 
+Variables:
+  1: swL2macNotifyInfo
+     Syntax="OCTETSTR"
+     Descr="This object indicates the last time reboot information.
+            "
+EDESC
+#
+#
+#
+EVENT swL2porttypechgNotification .1.3.6.1.4.1.171.11.64.1.2.15.0.4 "Status Events" Normal
+FORMAT  This trap indicate the port type change.  $+*
+SDESC
+ This trap indicate the port type change. 
+Variables:
+  1: swL2PortInfoPortIndex
+     Syntax="INTEGER"
+     Descr="This object indicates the module's port number.(1..Max port
+        number in the module)"
+  2: swL2PortInfoType
+     Syntax="INTEGER"
+       1: portType-100Base-TX
+       10: portType-1000Base-1394
+       11: none
+       2: portType-100Base-FX
+       3: portType-100Base-FL
+       4: portType-1000Base-TX
+       5: portType-1000Base-SX
+       6: portType-1000Base-LX
+       7: portType-1000Base-SX-GBIC
+       8: portType-1000Base-LX-GBIC
+       9: portType-1000Base-TX-GBIC
+     Descr="This object indicates the connector type of this port."
+EDESC
+#
+#
+#
+EVENT swPowerStatusChg .1.3.6.1.4.1.171.11.64.1.2.15.0.5 "Status Events" Normal
+FORMAT Power Status change notification. $+*
+SDESC
+Power Status change notification.
+Variables:
+  1: swDevInfoPowerUnitIndex
+     Syntax="INTEGER"
+     Descr="Indicates ID of the unit in the System"
+  2: swDevInfoPowerID
+     Syntax="INTEGER"
+     Descr="Indicates ID of the power "
+  3: swDevInfoPowerStatus
+     Syntax="INTEGER"
+       0: other
+       1: lowVoltage
+       2: overCurrent
+       3: working
+       4: fail
+       5: connect
+       6: disconnect
+     Descr="Indicates status of the power "
+EDESC
+#
+#
+#
+EVENT swPowerFailure .1.3.6.1.4.1.171.11.64.1.2.15.0.6 "Status Events" Normal
+FORMAT Power Failure notification. $+*
+SDESC
+Power Failure notification.
+Variables:
+  1: swDevInfoPowerUnitIndex
+     Syntax="INTEGER"
+     Descr="Indicates ID of the unit in the System"
+  2: swDevInfoPowerID
+     Syntax="INTEGER"
+     Descr="Indicates ID of the power "
+  3: swDevInfoPowerStatus
+     Syntax="INTEGER"
+       0: other
+       1: lowVoltage
+       2: overCurrent
+       3: working
+       4: fail
+       5: connect
+       6: disconnect
+     Descr="Indicates status of the power "
+EDESC
+#
+#
+#
+EVENT swPowerRecover .1.3.6.1.4.1.171.11.64.1.2.15.0.7 "Status Events" Normal
+FORMAT Power Recover notification. $+*
+SDESC
+Power Recover notification.
+Variables:
+  1: swDevInfoPowerUnitIndex
+     Syntax="INTEGER"
+     Descr="Indicates ID of the unit in the System"
+  2: swDevInfoPowerID
+     Syntax="INTEGER"
+     Descr="Indicates ID of the power "
+  3: swDevInfoPowerStatus
+     Syntax="INTEGER"
+       0: other
+       1: lowVoltage
+       2: overCurrent
+       3: working
+       4: fail
+       5: connect
+       6: disconnect
+     Descr="Indicates status of the power "
+EDESC
+#
+#
+#
+EVENT swL2PortSecurityViolationTrap .1.3.6.1.4.1.171.11.64.1.2.15.2.2 "Status Events" Normal
+FORMAT When the port_security trap is enabled, if there's a new MAC that violates the pre-defined $+*
+SDESC
+When the port_security trap is enabled, if there's a new MAC that violates the pre-defined
+port security configuration, trap will be sent out 
+Variables:
+  1: swL2PortSecurityPortIndex
+     Syntax="INTEGER"
+     Descr="Indicates the secured port to lock address learning."
+  2: swL2PortSecurityViolationMac
+     Syntax="OCTETSTR"
+     Descr="This object indicates the MAC address that violates the port security configuration."
+EDESC
+#
+#
+#
+EVENT swL2IpMacBindingViolationTrap .1.3.6.1.4.1.171.11.64.1.2.15.3.0.3 "Status Events" Normal
+FORMAT FORM: When the IP-Mac Binging trap is enabled, if there's a new MAC that violates the pre-defined $+*
+REGEX ((.*)des35[0-9]{2}.[0-9]{1,2}[\.0-9]{0,12}\:\ ?([0-9]{1,2})\ ?des35[0-9]{2}.[0-9]{1,2}[\.0-9]{0,12}\:([0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3})\ ?des35[0-9]{2}.[0-9]{1,2}[\.0-9]{0,12}\:\ ?([A-Z0-9]{2})\ ?([A-Z0-9]{2})\ ?([A-Z0-9]{2})\ ?([A-Z0-9]{2})\ ?([A-Z0-9]{2})\ ?([A-Z0-9]{2}))("FORM: WARN: Unauthenticated IP-MAC address and discarded by ip mac port binding <br>   (IP: $3, MAC: $4:$5:$6:$7:$8:$9, Port: $2)")ige
+SDESC
+When the IP-Mac Binging trap is enabled, if there's a new MAC that violates the pre-defined
+port security configuration, trap will be sent out 
+Variables:
+  1: swL2IpMacBindingPorts
+     Syntax="OCTETSTR"
+     Descr="The port members of this entry."
+  2: swL2IpMacBindingViolationIP
+     Syntax="OCTETSTR"
+     Descr="This object indicates the MAC address that violates the IP-Mac Binging configuration."
+  3: swL2IpMacBindingViolationMac
+     Syntax="OCTETSTR"
+     Descr="This object indicates the IP address that violates the IP-Mac Binging configuration."
+EDESC
+#
+#
+#
+#
+MIB: DES3550-L2MGMT-MIB (file:./L2mgmtDES3550.mib) converted on Sat Feb 23 20:22:23 2008 using snmpttconvertmib v1.2
+#
+#
+#
+EVENT swL2macNotification .1.3.6.1.4.1.171.11.64.2.2.15.0.3 "Status Events" Normal
+FORMAT  This trap indicate the mac addresses variation in address table .  $+*
+SDESC
+ This trap indicate the mac addresses variation in address table . 
+Variables:
+  1: swL2macNotifyInfo
+     Syntax="OCTETSTR"
+     Descr="This object indicates the last time reboot information.
+            "
+EDESC
+#
+#
+#
+EVENT swL2porttypechgNotification .1.3.6.1.4.1.171.11.64.2.2.15.0.4 "Status Events" Normal
+FORMAT  This trap indicate the port type change.  $+*
+SDESC
+ This trap indicate the port type change. 
+Variables:
+  1: swL2PortInfoPortIndex
+     Syntax="INTEGER"
+     Descr="This object indicates the module's port number.(1..Max port
+        number in the module)"
+  2: swL2PortInfoType
+     Syntax="INTEGER"
+       1: portType-100Base-TX
+       10: portType-1000Base-1394
+       11: none
+       2: portType-100Base-FX
+       3: portType-100Base-FL
+       4: portType-1000Base-TX
+       5: portType-1000Base-SX
+       6: portType-1000Base-LX
+       7: portType-1000Base-SX-GBIC
+       8: portType-1000Base-LX-GBIC
+       9: portType-1000Base-TX-GBIC
+     Descr="This object indicates the connector type of this port."
+EDESC
+#
+#
+#
+EVENT swPowerStatusChg .1.3.6.1.4.1.171.11.64.2.2.15.0.5 "Status Events" Normal
+FORMAT Power Status change notification. $+*
+SDESC
+Power Status change notification.
+Variables:
+  1: swDevInfoPowerUnitIndex
+     Syntax="INTEGER"
+     Descr="Indicates ID of the unit in the System"
+  2: swDevInfoPowerID
+     Syntax="INTEGER"
+     Descr="Indicates ID of the power "
+  3: swDevInfoPowerStatus
+     Syntax="INTEGER"
+       0: other
+       1: lowVoltage
+       2: overCurrent
+       3: working
+       4: fail
+       5: connect
+       6: disconnect
+     Descr="Indicates status of the power "
+EDESC
+#
+#
+#
+EVENT swPowerFailure .1.3.6.1.4.1.171.11.64.2.2.15.0.6 "Status Events" Normal
+FORMAT Power Failure notification. $+*
+SDESC
+Power Failure notification.
+Variables:
+  1: swDevInfoPowerUnitIndex
+     Syntax="INTEGER"
+     Descr="Indicates ID of the unit in the System"
+  2: swDevInfoPowerID
+     Syntax="INTEGER"
+     Descr="Indicates ID of the power "
+  3: swDevInfoPowerStatus
+     Syntax="INTEGER"
+       0: other
+       1: lowVoltage
+       2: overCurrent
+       3: working
+       4: fail
+       5: connect
+       6: disconnect
+     Descr="Indicates status of the power "
+EDESC
+#
+#
+#
+EVENT swPowerRecover .1.3.6.1.4.1.171.11.64.2.2.15.0.7 "Status Events" Normal
+FORMAT Power Recover notification. $+*
+SDESC
+Power Recover notification.
+Variables:
+  1: swDevInfoPowerUnitIndex
+     Syntax="INTEGER"
+     Descr="Indicates ID of the unit in the System"
+  2: swDevInfoPowerID
+     Syntax="INTEGER"
+     Descr="Indicates ID of the power "
+  3: swDevInfoPowerStatus
+     Syntax="INTEGER"
+       0: other
+       1: lowVoltage
+       2: overCurrent
+       3: working
+       4: fail
+       5: connect
+       6: disconnect
+     Descr="Indicates status of the power "
+EDESC
+#
+#
+#
+EVENT swL2PortSecurityViolationTrap .1.3.6.1.4.1.171.11.64.2.2.15.2.2 "Status Events" Normal
+FORMAT When the port_security trap is enabled, if there's a new MAC that violates the pre-defined $+*
+SDESC
+When the port_security trap is enabled, if there's a new MAC that violates the pre-defined
+port security configuration, trap will be sent out 
+Variables:
+  1: swL2PortSecurityPortIndex
+     Syntax="INTEGER"
+     Descr="Indicates the secured port to lock address learning."
+  2: swL2PortSecurityViolationMac
+     Syntax="OCTETSTR"
+     Descr="This object indicates the MAC address that violates the port security configuration."
+EDESC
+#
+#
+#
+EVENT swL2IpMacBindingViolationTrap .1.3.6.1.4.1.171.11.64.2.2.15.3.3 "Status Events" Normal
+FORMAT When the IP-Mac Binging trap is enabled, if there's a new MAC that violates the pre-defined $+*
+SDESC
+When the IP-Mac Binging trap is enabled, if there's a new MAC that violates the pre-defined
+port security configuration, trap will be sent out 
+Variables:
+  1: swL2IpMacBindingPorts
+     Syntax="OCTETSTR"
+     Descr="The port members of this entry."
+  2: swL2IpMacBindingViolationIP
+     Syntax="OCTETSTR"
+     Descr="This object indicates the MAC address that violates the IP-Mac Binging configuration."
+  3: swL2IpMacBindingViolationMac
+     Syntax="OCTETSTR"
+     Descr="This object indicates the IP address that violates the IP-Mac Binging configuration."
+EDESC
+#
+#
+#
+#
+MIB: LAG-MIB (file:./Lag.mib) converted on Sat Feb 23 20:22:23 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: SNMP-FRAMEWORK-MIB (file:./rfc2571.mib) converted on Sat Feb 23 20:22:24 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: SNMP-MPD-MIB (file:./rfc2572.mib) converted on Sat Feb 23 20:22:24 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: SNMP-NOTIFICATION-MIB (file:./rfc2573n.mib) converted on Sat Feb 23 20:22:24 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: SNMP-TARGET-MIB (file:./rfc2573t.mib) converted on Sat Feb 23 20:22:24 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: SNMP-USER-BASED-SM-MIB (file:./rfc2574.mib) converted on Sat Feb 23 20:22:24 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: SNMP-VIEW-BASED-ACM-MIB (file:./rfc2575.mib) converted on Sat Feb 23 20:22:24 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: SNMP-COMMUNITY-MIB (file:./rfc2576.mib) converted on Sat Feb 23 20:22:24 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: RADIUS-AUTH-CLIENT-MIB (file:./rfc2618.mib) converted on Sat Feb 23 20:22:24 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: RADIUS-ACC-CLIENT-MIB (file:./rfc2620.mib) converted on Sat Feb 23 20:22:24 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: P-BRIDGE-MIB (file:./rfc2674p.mib) converted on Sat Feb 23 20:22:24 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: Q-BRIDGE-MIB (file:./rfc2674q.mib) converted on Sat Feb 23 20:22:24 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: DISMAN-PING-MIB (file:./rfc2925p.mib) converted on Sat Feb 23 20:22:24 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: DISMAN-TRACEROUTE-MIB (file:./rfc2925t.mib) converted on Sat Feb 23 20:22:25 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: SSH-MIB (file:./SSH.mib) converted on Sat Feb 23 20:22:25 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: SSL-MIB (file:./SSLMIB.mib) converted on Sat Feb 23 20:22:25 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: SW3500PRIMGMT-MIB (file:./SW3500PRIMGMT-mib.mib) converted on Sat Feb 23 20:22:25 2008 using snmpttconvertmib v1.2
+#
+#
+#
+#
+MIB: SYSLOG-MIB (file:./SysLog.mib) converted on Sat Feb 23 20:22:25 2008 using snmpttconvertmib v1.2

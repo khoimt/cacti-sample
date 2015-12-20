@@ -1,0 +1,285 @@
+.vis_en1 {
+    visibility: visible;
+}
+.vis_dis1 {
+    visibility: hidden;
+}
+.vis_en {
+    display: inline;
+}
+.vis_dis {
+    display: none;
+}
+#container {
+    width: 600px;
+    height: 300px;
+    border: 3px solid #c3daf9;
+}
+.x-props-grid .x-item-disabled .x-grid3-cell-inner {
+    color: gray!important;
+    font-style: italic!important;
+}
+.emergency-row {
+    background-color: #F00!important;
+}
+.critical-row {
+    background-color: #F33!important;
+}
+.notice-row {
+    background-color: #4CC417!important;
+}
+.info-row {
+    background-color: #59E817!important;
+}
+.debug-row {
+    background-color: #D0D0D0!important;
+}
+.warning-row {
+    background-color: #F90!important;
+}
+.alert-row {
+    background-color: #FC6!important;
+}
+.error-row {
+    background-color: #F75D59!important;
+}
+.alerted {
+    background-image: url(../images/email_go.png)!important;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.record_new {
+    background-image: url(../images/bullet_star.png)!important;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.x-blind,
+.x-blind .x-panel-body {
+    background-color: #DFE8F6;
+}
+.calendar {
+    background-image: url(../images/default/shared/calendar.gif)!important;
+}
+.blist {
+    background-image: url(../images/details.gif)!important;
+}
+.delete {
+    background-image: url(../images/delete.gif)!important;
+}
+.icon-edit-record {
+    background-image: url(../images/table_edit.png)!important;
+}
+.icon-edit-magnifier {
+    background-image: url(../images/magnifier.gif)!important;
+}
+.icon-minus {
+    background-image: url(../images/delete2.png)!important;
+}
+.add {
+    background-image: url(../images/new_window.gif)!important;
+}
+.arrow_refresh {
+    background-image: url(../images/arrow_refresh.png)!important;
+}
+.icon-force_go {
+    background-image: url(../images/lightning_go.png)!important;
+}
+.bmenu {
+    background-image: url(menu-show.gif)!important;
+}
+.icon-ok {
+    background-image: url(../images/ok16.png)!important;
+}
+.icon-cancel {
+    background-image: url(../images/cancel16.png)!important;
+}
+.icon-accept {
+    background-image: url(../images/accept.png)!important;
+}
+.icon-disk {
+    background-image: url(../images/disk.png)!important;
+}
+.icon-undo {
+    background-image: url(../images/arrow_undo.png)!important;
+}
+.icon-form-add {
+    background-image: url(../images/add.png)!important;
+}
+.excel_export {
+    background-image: url(../images/excel_logo.gif)!important;
+}
+.menu-title {
+    background: #ebeadb url(../images/default/grid/grid3-hrow.gif) repeat-x;
+    border-bottom: 1px solid #99bbe8;
+    color: #15428b;
+    font: bold 10px tahoma, arial, verdana, sans-serif;
+    display: block;
+    padding: 3px;
+}
+.filter {
+    font-size: 11px;
+}
+.centerCls {
+    vertical-align: middle;
+}
+.my-icon {
+    background: url(cacti/plugins/snmptt/images/tab_snmptt.png) 0 6px no-repeat!important;
+}
+.rezult_ok {
+    background-color: #00BF47;
+    text-align: center;
+}
+.rezult_no_ok {
+    background-color: #ff7d00;
+    text-align: center;
+}
+.rezult_no_access {
+    background-color: #EAE8EC;
+    text-align: center;
+}
+td.x-grid3-td-formatlinecolumn {
+    overflow: hidden;
+}
+td.x-grid3-td-formatlinecolumn div.x-grid3-cell-inner {
+    white-space: normal;
+}
+td.x-grid3-td-id_sql_filter {
+    overflow: hidden;
+}
+td.x-grid3-td-id_sql_filter div.x-grid3-cell-inner {
+    white-space: normal;
+}
+td.x-grid3-td-id_notes {
+    overflow: hidden;
+}
+td.x-grid3-td-id_notes div.x-grid3-cell-inner {
+    white-space: normal;
+}
+td.x-grid3-td-id_email_message {
+    overflow: hidden;
+}
+td.x-grid3-td-id_email_message div.x-grid3-cell-inner {
+    white-space: normal;
+}
+.ux-row-action-cell .x-grid3-cell-inner {
+    padding: 1px 0 0 0;
+}
+.ux-row-action-item {
+    float: left;
+    min-width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    margin: 0 5px 0 0;
+    cursor: pointer;
+    overflow: hidden;
+}
+.ext-ie .ux-row-action-item {
+    width: 16px;
+}
+.ext-ie .ux-row-action-text {
+    width: auto;
+}
+.ux-row-action-item span {
+    vertical-align: middle;
+    padding: 0 0 0 20px;
+    line-height: 18px;
+}
+.ext-ie .ux-row-action-item span {
+    width: auto;
+}
+.x-grid-group-hd div {
+    position: relative;
+    height: 16px;
+}
+.ux-grow-action-item {
+    min-width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-position: 0 50%!important;
+    margin: 0 0 0 4px;
+    padding: 0!important;
+    cursor: pointer;
+    float: left;
+}
+.ext-ie .ux-grow-action-item {
+    width: 16px;
+}
+.ux-action-right {
+    float: right;
+    margin: 0 3px 0 2px;
+    padding: 0!important;
+}
+.ux-grow-action-text {
+    padding: 0!important;
+    margin: 0!important;
+    background: transparent none!important;
+    float: left;
+}
+.x-combo-list .x-combo-list-cursor {
+    border: 1px dotted #000!important;
+}
+.x-combo-list-item {
+    cursor: pointer;
+}
+.x-combo-list .x-combo-selected+.x-combo-selected {
+    border-top-color: #DFE8F6!important;
+}
+.x-combo-list .x-combo-selected+.x-combo-selected.x-combo-list-cursor {
+    border-top-color: #000!important;
+}
+.x-icon-modify {
+    background-image: url(../images/modify.gif)!important;
+}
+.x-icon-delete {
+    background-image: url(../images/delete.gif)!important;
+}
+.x-icon-cancel {
+    background-image: url(../images/cancel.gif)!important;
+}
+.x-icon-checked {
+    background-image: url(../images/checked.gif)!important;
+}
+.x-icon-invalid {
+    background-image: url(../images/invalid.gif)!important;
+}
+.x-grid3-hd-row td.ux-filtered-column {
+    font-style: italic!important;
+    font-weight: bold!important;
+}
+.x-grid3-row-notValid {
+    font-style: italic!important;
+    background-color: red!important;
+}
+.ux-close {
+    background-image: url(../images/default/layout/panel-close.gif)!important;
+}
+.ux-collapse {
+    background-image: url(../images/default/layout/ns-collapse.gif)!important;
+}
+.x-grid3-td-proper_value {
+    color: #060;
+}
+.x-grid3-hd-proper_value {
+    color: #000;
+    background: transparent url(../images/pencil.gif) no-repeat;
+    padding-left: 16px!important;
+}
+.x-grid-group-hd {
+    background-color: #E0E0E0;
+    border-top: 1px solid #99BBE8;
+}
+.ug-disabled-row-checker {
+    width: 100%;
+    height: 18px;
+    background-position: 2px 2px;
+    background-repeat: no-repeat;
+    background-color: #D3D3D3;
+    background-image: url(../images/default/grid/row-check-sprite.gif);
+}
+.x-grid3-row .ug-disabled-row-checker {
+    background-position: 2px 2px;
+}
+.x-grid3-row-selected .ug-disabled-row-checker,
+.x-grid3-hd-checker-on .x-grid3-hd-checker {
+    background-position: -23px 2px;
+}
