@@ -244,3 +244,8 @@ td.monitor-detail-content {
 td.thold-detail-content {
     border-right: transparent !important;
 }
+
+#snmp-unk-table td:nth-child(4),#snmp-unk-table table td:nth-child(5) {
+    word-break: break-word;
+    word-wrap: break-word;
+}

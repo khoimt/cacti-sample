@@ -73,23 +73,23 @@ $page_title = api_plugin_hook_function('page_title', 'Cacti');
         <!-- Ext CSS and Libs -->
         <!--<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">-->
         <link href="bower_components/angular/angular-csp.css">
-        <link href="bower_components/datatables/media/css/jquery.dataTables.css" type="text/css" rel="stylesheet">
+        <!--<link href="bower_components/datatables/media/css/jquery.dataTables.min.css" type="text/css" rel="stylesheet">-->
+        <link href="bower_components/datatables/media/css/dataTables.bootstrap.min.css" type="text/css" rel="stylesheet">
         <!-- Bootstrap Core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Custom CSS -->
         <link href="css/sb-admin.css" rel="stylesheet">
 
-        <!-- Morris Charts CSS -->
-        <link href="css/plugins/morris.css" rel="stylesheet">
-
         <!-- Custom Fonts -->
         <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
         <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <!--<script src="bower_components/datatables/media/js/jquery.js"></script>-->
         <script src="bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+        <script src="bower_components/datatables/media/js/dataTables.bootstrap.min.js"></script>
         <script src="bower_components/angular/angular.js"></script>
-        <script src="bower_components/angular-datatables/dist/angular-datatables.min.js"></script>
+        <!--<script src="bower_components/angular-datatables/dist/angular-datatables.min.js"></script>-->
         <script src="bower_components/angular-route/angular-route.min.js"></script>
         <script src="js/app.js"></script>
         <script src="js/controllers.js"></script>

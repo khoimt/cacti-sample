@@ -4,8 +4,8 @@ var url = 'iper_ajax.php';
 var data = {
     start: 0,
     limit: 1000,
+    length: 1000,
     filter: null,
-    task: 'camm_get_traps_records',
     tree_id: 'root'
 };
 var iperControllers = angular.module('iperControllers', []);
@@ -111,8 +111,11 @@ iperControllers.controller('SyslogCtrl', ['$scope', '$http', 'jQuery',
         $('ul.nav li').removeClass('active');
         $('ul.nav .li-syslog').addClass('active');
 
-        var dt = angular.extend(data);
-        dt['task'] = 'camm_get_syslog_records';
+        var dt = {
+            filter: null,
+            tree_id: 'root'
+        };
+        dt['task'] = 'iper_get_syslogs';
         dt[csrfMagicName] = csrfMagicToken;
         data[csrfMagicName] = csrfMagicToken;
 
@@ -120,18 +123,19 @@ iperControllers.controller('SyslogCtrl', ['$scope', '$http', 'jQuery',
             'processing': true,
             'serverSide': true,
             'autoWidth': true,
+            'ordering': false,
+            'searching': false,
             'order': [
                 [0, 'desc']
             ],
             'ajax': {
                 'url': url,
                 'type': 'POST',
-                'data': data,
+                'data': dt,
                 'dataSrc': 'results'
             },
             'columns': [
                 {"data": "id", 'title': 'ID'},
-                {"data": "device_id", 'title': 'Device ID'},
                 {"data": "host", 'title': 'Host'},
                 {"data": "facility", 'title': 'Facility'},
                 {"data": "priority", 'title': 'Priority'},
@@ -146,8 +150,9 @@ iperControllers.controller('SnmpttCtrl', ['$scope', '$routeParams', 'jQuery',
     function ($scope, $routeParams, $) {
         $('ul.nav li').removeClass('active');
         $('ul.nav .li-snmptt').addClass('active');
+        
         var dt = angular.extend(data);
-        dt['task'] = 'camm_get_traps_records';
+        dt['task'] = 'iper_get_snmptt_traps';
         dt[csrfMagicName] = csrfMagicToken;
 
         $('#snmp-table').DataTable({
@@ -160,13 +165,12 @@ iperControllers.controller('SnmpttCtrl', ['$scope', '$routeParams', 'jQuery',
             'columns': [
                 {"data": "hostname", 'title': 'Host'},
                 {"data": "agentip", 'title': 'Agent IP'},
-                {"data": "description", 'title': 'Description'},
                 {"data": "severity", 'title': 'Severity'},
                 {"data": "trapoid", 'title': 'OID'},
                 {"data": "eventname", 'title': 'Event'},
                 {"data": "formatline", 'title': 'Format line'},
                 {"data": "category", 'title': 'Category'},
-                {"data": "traptime", 'title': 'Time'}
+                {"data": "created", 'title': 'Time'}
             ]
         });
     }]);
@@ -176,7 +180,7 @@ iperControllers.controller('SnmpttUnkCtrl', ['$scope', '$routeParams', 'jQuery',
         $('ul.nav li').removeClass('active');
         $('ul.nav .li-snmpttunk').addClass('active');
         var dt = angular.extend(data);
-        dt['task'] = 'camm_get_unktraps_records';
+        dt['task'] = 'iper_get_snmptt_unks';
         dt[csrfMagicName] = csrfMagicToken;
 
         $('#snmp-unk-table').DataTable({
@@ -189,10 +193,10 @@ iperControllers.controller('SnmpttUnkCtrl', ['$scope', '$routeParams', 'jQuery',
             'columns': [
                 {"data": "hostname", 'title': 'Host'},
                 {"data": "agentip", 'title': 'Agent IP'},
-                {"data": "description", 'title': 'Description'},
                 {"data": "enterprise", 'title': 'Enterprise'},
                 {"data": "trapoid", 'title': 'OID'},
-                {"data": "formatline", 'title': 'Format line'}
+                {"data": "formatline", 'title': 'Format line'},
+                {"data": "created", 'title': 'Time'}
             ]
         });
     }]);

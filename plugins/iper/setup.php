@@ -201,6 +201,8 @@ function iper_setup_table() {
     global $config, $database_default;
     include_once($config["library_path"] . "/database.php");
 
+    db_execute('DROP TABLE IF EXISTS `plugin_iper_snmptt`');
+
     $schema = array();
     $schema['columns'][] = array('name' => 'id', 'type' => 'int(11)', 'unsigned' => true, 'NULL' => false, 'auto_increment' => true);
     $schema['columns'][] = array('name' => 'eventname', 'type' => 'varchar(50)', 'NULL' => true);
@@ -215,6 +217,7 @@ function iper_setup_table() {
     $schema['columns'][] = array('name' => 'uptime', 'type' => 'varchar(20)', 'NULL' => true);
     $schema['columns'][] = array('name' => 'traptime', 'type' => 'datetime', 'NULL' => true);
     $schema['columns'][] = array('name' => 'formatline', 'type' => 'text', 'NULL' => true);
+    $schema['columns'][] = array('name' => 'created', 'type' => 'timestamp', 'NULL' => true, 'default' => 'CURRENT_TIMESTAMP');
     $schema['primary'] = 'id';
     $schema['keys'][] = array('name' => 'hostname', 'columns' => 'hostname');
     $schema['type'] = 'MyISAM';
@@ -224,19 +227,7 @@ function iper_setup_table() {
 
     $schema = array();
 
-    $schema['columns'][] = array('name' => 'stat_time', 'type' => 'datetime', 'NULL' => true);
-    $schema['columns'][] = array('name' => 'total_received', 'type' => 'bigint(20)', 'NULL' => true);
-    $schema['columns'][] = array('name' => 'total_translated', 'type' => 'bigint(20)', 'NULL' => true);
-    $schema['columns'][] = array('name' => 'total_ignored', 'type' => 'bigint(20)', 'NULL' => true);
-    $schema['columns'][] = array('name' => 'total_unknown', 'type' => 'bigint(20)', 'NULL' => true);
-    $schema['type'] = 'MyISAM';
-    $schema['keys'][] = array('name' => 'stat_time', 'columns' => 'stat_time');
-    $schema['comment'] = 'Statistics Data';
-
-    api_plugin_db_table_create('iper', 'plugin_iper_stat', $schema);
-
-    $schema = array();
-
+    db_execute('DROP TABLE IF EXISTS plugin_iper_snmptt_unk');
     $schema['columns'][] = array('name' => 'id', 'type' => 'int(11)', 'unsigned' => true, 'NULL' => false, 'auto_increment' => true);
     $schema['columns'][] = array('name' => 'trapoid', 'type' => 'varchar(100)', 'NULL' => true);
     $schema['columns'][] = array('name' => 'enterprise', 'type' => 'varchar(100)', 'NULL' => true);
@@ -246,15 +237,16 @@ function iper_setup_table() {
     $schema['columns'][] = array('name' => 'uptime', 'type' => 'varchar(20)', 'NULL' => true);
     $schema['columns'][] = array('name' => 'traptime', 'type' => 'datetime', 'NULL' => true);
     $schema['columns'][] = array('name' => 'formatline', 'type' => 'text', 'NULL' => true);
+    $schema['columns'][] = array('name' => 'created', 'type' => 'timestamp', 'NULL' => true, 'default' => 'CURRENT_TIMESTAMP');
     $schema['primary'] = 'id';
     $schema['keys'][] = array('name' => 'id', 'columns' => 'id');
     $schema['type'] = 'MyISAM';
     $schema['comment'] = 'Unkonwn trap data';
 
-    api_plugin_db_table_create('camm', 'plugin_iper_snmptt_unk', $schema);
+    api_plugin_db_table_create('iper', 'plugin_iper_snmptt_unk', $schema, 1);
 
+    db_execute('DROP TABLE IF EXISTS plugin_iper_syslog');
     $schema = array();
-
     $schema['columns'][] = array('name' => 'id', 'type' => 'int(11)', 'unsigned' => true, 'NULL' => false, 'auto_increment' => true);
     $schema['columns'][] = array('name' => 'host', 'type' => 'varchar(128)', 'NULL' => true);
     $schema['columns'][] = array('name' => 'sourceip', 'type' => 'varchar(45)', 'NULL' => true);
@@ -269,18 +261,18 @@ function iper_setup_table() {
     $schema['keys'][] = array('name' => 'priority', 'columns' => 'priority');
     $schema['keys'][] = array('name' => 'sourceip', 'columns' => 'sourceip');
     $schema['keys'][] = array('name' => 'status', 'columns' => 'status');
-    $schema['keys'][] = array('name' => 'status_date', 'columns' => 'status_date');
     $schema['keys'][] = array('name' => 'sys_date', 'columns' => 'sys_date');
     $schema['keys'][] = array('name' => 'alert', 'columns' => 'alert');
     $schema['type'] = 'MyISAM';
     $schema['comment'] = 'syslog data';
 
-    api_plugin_db_table_create('camm', 'plugin_iper_syslog', $schema);
+    api_plugin_db_table_create('iper', 'plugin_iper_syslog', $schema);
 
+    $schema['columns'][6] = array('name' => 'message', 'type' => 'varchar(255)', 'NULL' => true);
     $schema['type'] = 'MEMORY';
     $schema['comment'] = 'syslog imcoming data';
 
-    api_plugin_db_table_create('camm', 'plugin_iper_syslog_incoming', $schema);
+    api_plugin_db_table_create('iper', 'plugin_iper_syslog_incoming', $schema);
 }
 
 function iper_execute_sql($message, $syntax) {

@@ -34,7 +34,7 @@
  $dir = dirname(__FILE__);
  chdir($dir);
  
- if (strpos($dir, 'camm') !== false) {
+ if (strpos($dir, 'iper') !== false) {
  	chdir('../../');
  }
  
@@ -90,7 +90,7 @@
  	if ($camm_debug)  {
  		camm_debug("S0. Found enabled DEBUG mode. Output will be verbose");
  	}
- 	camm_debug("S0. About to enter camm poller processing");
+ 	camm_debug("S0. About to enter iper poller processing");
  	$seconds_offset = read_config_option("camm_autopurge_timing");
  	
  	process_alerts();
