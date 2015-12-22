@@ -158,7 +158,11 @@ function api_plugin_db_table_create ($plugin, $table, $data) {
 				if (isset($column['NULL']) && $column['NULL'] == true && !isset($column['default']))
 					$sql .= ' default NULL';
 				if (isset($column['default']))
-					$sql .= ' default ' . (is_numeric($column['default']) ? $column['default'] : "'" . $column['default'] . "'");
+                    if (strtolower($column['default']) == 'current_timestamp') {
+                        $sql .= ' default CURRENT_TIMESTAMP';
+                    } else {
+                        $sql .= ' default ' . (is_numeric($column['default']) ? $column['default'] : "'" . $column['default'] . "'");
+                    }
 				if (isset($column['auto_increment']))
 					$sql .= ' auto_increment';
 				$c++;
